@@ -64,27 +64,15 @@
     }
 
     .nav-logo {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--negro);
       display: flex;
       align-items: center;
-      gap: 12px;
+      text-decoration: none;
     }
 
-
-    .nav-logo-text {
-      font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--negro);
-      line-height: 1;
+    .nav-logo img {
+      height: 30px;
+      width: auto;
+      display: block;
     }
 
     .nav-links {
@@ -494,8 +482,8 @@
       padding: 120px 48px;
     }
 
-    section > *:not(.inner),
-    section > .inner {
+    section:not(#hero) > *:not(.inner),
+    section:not(#hero) > .inner {
       max-width: var(--max-w);
       margin-left: auto;
       margin-right: auto;
@@ -968,7 +956,7 @@
   <nav class="site-nav">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">
-        <span class="nav-logo-text">Dellepiane</span>
+        <img src="images/logo.png" alt="Dellepiane Spirits">
       </a>
       <ul class="nav-links">
         <li><a href="#historia"><span data-es>Historia</span><span data-en>History</span></a></li>
