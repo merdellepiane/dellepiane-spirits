@@ -10,7 +10,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --azul: #3B4BA8;
+      --azul: #45519E;
+      --azul-claro: #83BADA;
       --negro: #0E0E0E;
       --blanco: #FAFAF8;
       --gris: #888;
@@ -57,7 +58,7 @@
     }
 
     .nav-logo img {
-      height: 30px;
+      height: 36px;
       width: auto;
       display: block;
     }
@@ -138,7 +139,19 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 30%;
       opacity: 0.85;
+      display: block;
+    }
+
+    /* Logo propio de la línea, arriba del título, sobre fondo transparente */
+    .linea-marca-logo {
+      margin-bottom: 28px;
+    }
+
+    .linea-marca-logo img {
+      height: 64px;
+      width: auto;
       display: block;
     }
 
@@ -173,10 +186,10 @@
     .linea-breadcrumb {
       font-family: var(--sans);
       font-size: 11px;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--gris);
+      color: #3A3A38;
       margin-bottom: 32px;
       display: flex;
       align-items: center;
@@ -184,13 +197,13 @@
     }
 
     .linea-breadcrumb a {
-      color: var(--gris);
+      color: #3A3A38;
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .linea-breadcrumb a:hover { color: var(--negro); }
-    .linea-breadcrumb span { color: var(--borde); }
+    .linea-breadcrumb a:hover { color: var(--azul); }
+    .linea-breadcrumb span { color: #B0B0AC; }
 
     .linea-nombre {
       font-family: var(--serif);
@@ -203,10 +216,10 @@
 
     .linea-subtitulo {
       font-family: var(--serif);
-      font-size: 20px;
-      font-weight: 300;
-      font-style: italic;
-      color: var(--gris);
+      font-size: 22px;
+      font-weight: 500;
+      font-style: normal;
+      color: var(--azul);
       margin-bottom: 40px;
     }
 
@@ -242,61 +255,12 @@
     .btn-conseguilos:hover { opacity: 0.85; }
     .btn-conseguilos::after { content: '→'; font-size: 16px; }
 
-    /* ── FICHA TÉCNICA: graduación + presentaciones ── */
-    .linea-ficha {
-      display: flex;
-      gap: 48px;
-      margin-bottom: 36px;
-      padding: 24px 0;
-      border-top: 1px solid var(--borde);
-      border-bottom: 1px solid var(--borde);
-    }
-
-    .ficha-item {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .ficha-label {
-      font-family: var(--sans);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gris);
-    }
-
-    .ficha-valor {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 400;
-      color: var(--negro);
-    }
-
-    .ficha-valor-lista {
-      font-family: var(--sans);
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--negro);
-      line-height: 1.5;
-    }
-
     /* ── REDES SOCIALES DE LA LÍNEA ── */
     .linea-redes {
       display: flex;
       align-items: center;
       gap: 16px;
       margin-bottom: 32px;
-    }
-
-    .linea-redes-label {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gris);
     }
 
     .red-link {
@@ -462,8 +426,9 @@
       nav { padding: 0 24px; }
       .linea-hero { grid-template-columns: 1fr; }
       .linea-imagen { min-height: 300px; }
+      .linea-marca-logo { margin-bottom: 20px; }
+      .linea-marca-logo img { height: 48px; }
       .linea-info { padding: 48px 24px; }
-      .linea-ficha { gap: 32px; flex-wrap: wrap; }
       .caract-grid { grid-template-columns: 1fr; }
       .otras-grid { grid-template-columns: 1fr 1fr; }
       .linea-caracteristicas,
@@ -493,10 +458,14 @@
   <div class="linea-hero">
 
     <div class="linea-imagen">
-      <img src="images/categoria-tresplumas.webp" alt="Tres Plumas — Dellepiane">
+      <img src="images/categoria-tresplumas-cuadrada.jpg" alt="Tres Plumas — Dellepiane">
     </div>
 
     <div class="linea-info">
+      <div class="linea-marca-logo">
+        <img src="images/logo-tresplumas.png" alt="Tres Plumas">
+      </div>
+
       <div class="linea-breadcrumb">
         <a href="index.html"><span data-es>Inicio</span><span data-en>Home</span></a>
         <span>/</span>
@@ -513,21 +482,8 @@
         <p><span data-es>Cada producto de la línea combina tradición artesanal con estándares de producción internacionales, logrando sabores únicos que se reconocen en cada copa.</span><span data-en>Each product in the line combines artisanal tradition with international production standards, achieving unique flavours recognisable in every glass.</span></p>
       </div>
 
-      <!-- Ficha técnica: graduación alcohólica + presentaciones -->
-      <div class="linea-ficha">
-        <div class="ficha-item">
-          <span class="ficha-label"><span data-es>Graduación alcohólica</span><span data-en>Alcohol content</span></span>
-          <span class="ficha-valor">20°&nbsp;–&nbsp;25°</span>
-        </div>
-        <div class="ficha-item">
-          <span class="ficha-label"><span data-es>Presentaciones</span><span data-en>Sizes</span></span>
-          <span class="ficha-valor-lista">700ml · 1L · 1,75L</span>
-        </div>
-      </div>
-
       <!-- Redes sociales propias de la línea -->
       <div class="linea-redes">
-        <span class="linea-redes-label"><span data-es>Seguilos</span><span data-en>Follow</span></span>
         <a href="https://www.instagram.com/tresplumas.ar/" target="_blank" class="red-link" aria-label="Instagram Tres Plumas">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
         </a>
