@@ -1241,77 +1241,9 @@
     <!-- Mapa + contacto lateral -->
     <div class="exportacion-layout fade-in">
 
-      <!-- Mapa SVG punteado -->
+      <!-- Mapa D3 con geografía real -->
       <div class="exportacion-mapa">
-        <svg viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" class="mapa-svg">
-          <!-- Continentes simplificados -->
-          <!-- América del Sur -->
-          <path d="M230 200 L260 195 L275 210 L280 240 L270 280 L255 320 L240 350 L225 360 L210 340 L205 300 L210 260 L215 230 Z" fill="#E0E0DC" stroke="none"/>
-          <!-- América Central y Norte -->
-          <path d="M130 80 L200 75 L220 90 L230 120 L225 160 L215 190 L200 195 L180 185 L160 175 L140 155 L125 130 L120 105 Z" fill="#E0E0DC" stroke="none"/>
-          <!-- Europa -->
-          <path d="M460 80 L510 75 L530 85 L535 110 L520 130 L500 140 L475 135 L455 120 L450 100 Z" fill="#E0E0DC" stroke="none"/>
-          <!-- África -->
-          <path d="M460 145 L510 140 L530 155 L535 200 L525 250 L510 280 L490 285 L470 270 L455 230 L450 185 L455 160 Z" fill="#E0E0DC" stroke="none"/>
-          <!-- Asia -->
-          <path d="M540 70 L700 65 L730 80 L740 110 L730 150 L700 170 L650 175 L600 165 L555 145 L535 120 L535 90 Z" fill="#E0E0DC" stroke="none"/>
-          <!-- Oceanía -->
-          <path d="M720 270 L775 265 L790 280 L785 310 L765 320 L740 315 L725 300 Z" fill="#E0E0DC" stroke="none"/>
-
-          <!-- Líneas desde Buenos Aires (250, 325) a cada destino -->
-          <g stroke="#45519E" stroke-width="1" stroke-dasharray="4 3" opacity="0.5" fill="none">
-            <!-- LATAM -->
-            <line x1="250" y1="325" x2="258" y2="295"/><!-- Uruguay -->
-            <line x1="250" y1="325" x2="238" y2="288"/><!-- Chile -->
-            <line x1="250" y1="325" x2="265" y2="270"/><!-- Paraguay -->
-            <line x1="250" y1="325" x2="270" y2="250"/><!-- Brasil -->
-            <line x1="250" y1="325" x2="245" y2="240"/><!-- Bolivia -->
-            <line x1="250" y1="325" x2="238" y2="225"/><!-- Perú -->
-            <line x1="250" y1="325" x2="233" y2="210"/><!-- Ecuador -->
-            <line x1="250" y1="325" x2="235" y2="195"/><!-- Colombia -->
-            <line x1="250" y1="325" x2="232" y2="182"/><!-- Venezuela -->
-            <line x1="250" y1="325" x2="185" y2="158"/><!-- El Salvador -->
-            <line x1="250" y1="325" x2="178" y2="165"/><!-- Costa Rica -->
-            <line x1="250" y1="325" x2="182" y2="152"/><!-- Honduras -->
-            <line x1="250" y1="325" x2="158" y2="118"/><!-- EEUU -->
-            <!-- Europa -->
-            <line x1="250" y1="325" x2="487" y2="98"/><!-- Holanda -->
-            <line x1="250" y1="325" x2="478" y2="92"/><!-- Inglaterra -->
-            <line x1="250" y1="325" x2="498" y2="108"/><!-- Italia -->
-            <!-- Asia -->
-            <line x1="250" y1="325" x2="688" y2="115"/><!-- China -->
-            <line x1="250" y1="325" x2="672" y2="135"/><!-- Corea -->
-            <line x1="250" y1="325" x2="618" y2="130"/><!-- India -->
-          </g>
-
-          <!-- Punto origen: Buenos Aires -->
-          <circle cx="250" cy="325" r="6" fill="#45519E"/>
-          <circle cx="250" cy="325" r="10" fill="#45519E" opacity="0.2"/>
-          <text x="258" y="340" fill="#45519E" font-size="9" font-family="DM Sans, sans-serif" font-weight="500">Buenos Aires</text>
-
-          <!-- Puntos destino LATAM -->
-          <circle cx="258" cy="295" r="4" fill="#45519E"/><!-- Uruguay -->
-          <circle cx="238" cy="288" r="4" fill="#45519E"/><!-- Chile -->
-          <circle cx="265" cy="270" r="4" fill="#45519E"/><!-- Paraguay -->
-          <circle cx="270" cy="250" r="4" fill="#45519E"/><!-- Brasil -->
-          <circle cx="245" cy="240" r="4" fill="#45519E"/><!-- Bolivia -->
-          <circle cx="238" cy="225" r="4" fill="#45519E"/><!-- Perú -->
-          <circle cx="233" cy="210" r="4" fill="#45519E"/><!-- Ecuador -->
-          <circle cx="235" cy="195" r="4" fill="#45519E"/><!-- Colombia -->
-          <circle cx="232" cy="182" r="4" fill="#45519E"/><!-- Venezuela -->
-          <circle cx="185" cy="158" r="4" fill="#45519E"/><!-- El Salvador -->
-          <circle cx="178" cy="165" r="4" fill="#45519E"/><!-- Costa Rica -->
-          <circle cx="182" cy="152" r="4" fill="#45519E"/><!-- Honduras -->
-          <circle cx="158" cy="118" r="4" fill="#45519E"/><!-- EEUU -->
-          <!-- Europa -->
-          <circle cx="487" cy="98" r="4" fill="#45519E"/><!-- Holanda -->
-          <circle cx="478" cy="92" r="4" fill="#45519E"/><!-- Inglaterra -->
-          <circle cx="498" cy="108" r="4" fill="#45519E"/><!-- Italia -->
-          <!-- Asia -->
-          <circle cx="688" cy="115" r="4" fill="#45519E"/><!-- China -->
-          <circle cx="672" cy="135" r="4" fill="#45519E"/><!-- Corea -->
-          <circle cx="618" cy="130" r="4" fill="#45519E"/><!-- India -->
-        </svg>
+        <div id="mapa-d3"></div>
       </div>
 
       <!-- Datos de contacto lateral -->
@@ -1612,6 +1544,120 @@
       /* Init */
       updateCounter(0);
       resetTimer();
+    })();
+  </script>
+
+  <!-- ── MAPA D3 ── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+  <script>
+    (function() {
+      var destinations = [
+        {lat:-34.9, lon:-56.2}, // Uruguay
+        {lat:-33.4, lon:-70.7}, // Chile
+        {lat:-25.3, lon:-57.6}, // Paraguay
+        {lat:-15.8, lon:-48.0}, // Brasil
+        {lat:-16.5, lon:-68.1}, // Bolivia
+        {lat:-12.0, lon:-77.0}, // Perú
+        {lat:-0.2,  lon:-78.5}, // Ecuador
+        {lat:4.7,   lon:-74.1}, // Colombia
+        {lat:10.5,  lon:-66.9}, // Venezuela
+        {lat:13.7,  lon:-89.2}, // El Salvador
+        {lat:9.9,   lon:-84.1}, // Costa Rica
+        {lat:14.1,  lon:-87.2}, // Honduras
+        {lat:38.9,  lon:-77.0}, // Estados Unidos
+        {lat:52.4,  lon:4.9},   // Holanda
+        {lat:51.5,  lon:-0.1},  // Inglaterra
+        {lat:41.9,  lon:12.5},  // Italia
+        {lat:39.9,  lon:116.4}, // China
+        {lat:37.6,  lon:127.0}, // Corea
+        {lat:28.6,  lon:77.2},  // India
+      ];
+      var BA = {lat:-34.6, lon:-58.4};
+
+      function buildMap() {
+        var wrap = document.getElementById('mapa-d3');
+        if (!wrap) return;
+        var W = wrap.offsetWidth || 680;
+        var H = Math.round(W * 0.50);
+
+        var svg = d3.select('#mapa-d3').append('svg')
+          .attr('width','100%')
+          .attr('viewBox','0 0 '+W+' '+H)
+          .style('display','block');
+
+        var proj = d3.geoNaturalEarth1()
+          .scale(W / 6.3)
+          .translate([W/2, H/2]);
+
+        var path = d3.geoPath().projection(proj);
+
+        fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+          .then(function(r){ return r.json(); })
+          .then(function(world) {
+            var countries = topojson.feature(world, world.objects.countries);
+
+            // Countries — filled white/light, no borders
+            svg.selectAll('path.c')
+              .data(countries.features)
+              .join('path')
+              .attr('class','c')
+              .attr('d', path)
+              .attr('fill','rgba(250,250,248,0.18)')
+              .attr('stroke','rgba(250,250,248,0.06)')
+              .attr('stroke-width','0.4');
+
+            var ba = proj([BA.lon, BA.lat]);
+
+            // Dashed lines
+            destinations.forEach(function(d) {
+              var pt = proj([d.lon, d.lat]);
+              if (!pt || !ba) return;
+              var route = {type:'LineString', coordinates:[[BA.lon,BA.lat],[d.lon,d.lat]]};
+              svg.append('path')
+                .datum(route)
+                .attr('d', d3.geoPath().projection(proj)(route))
+                .attr('fill','none')
+                .attr('stroke','#83BADA')
+                .attr('stroke-width','0.8')
+                .attr('stroke-dasharray','3 3')
+                .attr('opacity','0.7');
+
+              svg.append('circle')
+                .attr('cx', pt[0]).attr('cy', pt[1])
+                .attr('r', 3)
+                .attr('fill','#45519E')
+                .attr('stroke','rgba(250,250,248,0.6)')
+                .attr('stroke-width','0.8');
+            });
+
+            // Buenos Aires
+            svg.append('circle')
+              .attr('cx', ba[0]).attr('cy', ba[1])
+              .attr('r', 9)
+              .attr('fill','#45519E')
+              .attr('opacity','0.18');
+            svg.append('circle')
+              .attr('cx', ba[0]).attr('cy', ba[1])
+              .attr('r', 5)
+              .attr('fill','#45519E')
+              .attr('stroke','#FAFAF8')
+              .attr('stroke-width','1.2');
+            svg.append('text')
+              .attr('x', ba[0]+9).attr('y', ba[1]-7)
+              .attr('font-size','9')
+              .attr('font-family','DM Sans, sans-serif')
+              .attr('font-weight','500')
+              .attr('fill','rgba(250,250,248,0.7)')
+              .text('Buenos Aires');
+          });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', buildMap);
+      } else {
+        buildMap();
+      }
     })();
   </script>
 
