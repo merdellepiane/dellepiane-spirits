@@ -750,28 +750,103 @@
     #exportacion .section-label::before { background: rgba(250,250,248,0.2); }
     #exportacion h2 { color: var(--blanco); }
 
-    .exportacion-grid {
+    .exportacion-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      margin-top: 64px;
+      grid-template-columns: 1fr 320px;
+      gap: 64px;
       align-items: start;
+      margin-top: 48px;
     }
 
-    .exportacion-texto p {
-      font-size: 16px;
+    .exportacion-mapa { width: 100%; }
+    .mapa-svg { width: 100%; height: auto; display: block; }
+
+    .exportacion-contacto {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 8px;
+    }
+
+    .exportacion-intro {
+      font-size: 15px;
       font-weight: 300;
-      line-height: 1.8;
-      color: rgba(250,250,248,0.55);
-      margin-bottom: 20px;
+      line-height: 1.75;
+      color: rgba(250,250,248,0.7);
     }
 
-    .exportacion-texto p:first-child {
-      font-family: var(--serif);
-      font-size: 22px;
-      color: rgba(250,250,248,0.85);
-      line-height: 1.6;
+    .exportacion-dato {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border-top: 1px solid rgba(250,250,248,0.1);
+      padding-top: 16px;
     }
+
+    .exportacion-dato-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(250,250,248,0.35);
+    }
+
+    .exportacion-dato a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 300;
+      transition: color 0.2s;
+    }
+
+    .exportacion-dato a:hover { color: var(--azul-claro); }
+
+    .exportacion-paises {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      border-top: 1px solid rgba(250,250,248,0.1);
+      padding-top: 20px;
+    }
+
+    .exportacion-region { display: flex; flex-direction: column; gap: 4px; }
+
+    .region-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--azul-claro);
+    }
+
+    .region-lista {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(250,250,248,0.5);
+      line-height: 1.65;
+    }
+
+    /* Botón "conocer historia completa" */
+    .btn-historia {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--azul);
+      text-decoration: none;
+      border-bottom: 1px solid var(--azul);
+      padding-bottom: 3px;
+      margin-top: 8px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-historia:hover { opacity: 0.7; }
 
     .form-grupo {
       margin-bottom: 20px;
@@ -940,7 +1015,7 @@
       .slider-counter { display: none; }
       .slide-year-deco { display: none; }
       .historia-grid,
-      .exportacion-grid { grid-template-columns: 1fr; gap: 48px; }
+      .exportacion-layout { grid-template-columns: 1fr; gap: 48px; }
       .contacto-grid { grid-template-columns: 1fr; gap: 40px; }
       .form-grid { grid-template-columns: 1fr; }
       .producto-tag { display: none; }
@@ -1069,21 +1144,23 @@
   <!-- HISTORIA -->
   <section id="historia">
     <div class="section-label"><span data-es>Historia</span><span data-en>History</span></div>
-    <h2><span data-es>Una empresa centenaria<br>con mirada global.</span><span data-en>A century-old company<br>with a global vision.</span></h2>
+    <h2><span data-es>El nacimiento<br>de un clásico.</span><span data-en>The birth<br>of a classic.</span></h2>
     <div class="historia-grid fade-in">
       <div class="historia-texto">
-        <p><span data-es>Desde 1898, Dellepiane elabora licores y espirituosas con una convicción que no cambia: la calidad no se negocia.</span><span data-en>Since 1898, Dellepiane has crafted liqueurs and spirits with an unwavering conviction: quality is non-negotiable.</span></p>
-        <p><span data-es>Lo que comenzó como una destilería familiar en Buenos Aires se convirtió en una de las empresas licorera más reconocidas de Argentina, con presencia en mercados internacionales y un portfolio que abarca desde licores clásicos hasta espirituosas premium.</span><span data-en>What began as a family distillery in Buenos Aires became one of Argentina's most recognised liqueur companies, with a presence in international markets and a portfolio spanning classic liqueurs to premium spirits.</span></p>
-        <p><span data-es>Más de ciento veinticinco años de historia respaldan cada botella que sale de nuestra planta.</span><span data-en>More than one hundred and twenty-five years of history back every bottle that leaves our plant.</span></p>
+        <p><span data-es>En 1898, la familia Dellepiane fundó en Buenos Aires una destilería con una convicción simple y profunda: elaborar bebidas de calidad sin concesiones. Más de 125 años después, esa misma convicción guía cada botella que sale de nuestra planta.</span><span data-en>In 1898, the Dellepiane family founded a distillery in Buenos Aires with one simple and profound conviction: to craft quality beverages without compromise. Over 125 years later, that same conviction guides every bottle that leaves our plant.</span></p>
+        <p><span data-es>De ser una pequeña operación familiar, Dellepiane creció hasta convertirse en una de las empresas licoreras más reconocidas de Argentina. Hoy contamos con un portfolio de más de 50 productos — desde licores clásicos como Tres Plumas hasta innovaciones como Tambo Dulce de Leche Liqueur — con presencia en mercados de América, Europa y Asia.</span><span data-en>From a small family operation, Dellepiane grew to become one of Argentina's most recognised spirits companies. Today we offer a portfolio of over 50 products — from classic liqueurs like Tres Plumas to innovations like Tambo Dulce de Leche Liqueur — with a presence across markets in the Americas, Europe and Asia.</span></p>
+        <a href="historia.html" class="btn-historia">
+          <span data-es>Conocer nuestra historia completa</span><span data-en>Discover our full story</span> →
+        </a>
       </div>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-year">1898</div>
-          <div class="timeline-desc"><span data-es>Fundación de la empresa en Buenos Aires. Primeras elaboraciones artesanales.</span><span data-en>Founding of the company in Buenos Aires. First artisanal productions.</span></div>
+          <div class="timeline-desc"><span data-es>Fundación en Buenos Aires. Primeras elaboraciones artesanales de licores y aperitivos.</span><span data-en>Founded in Buenos Aires. First artisanal liqueur and aperitif productions.</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">1940s</div>
-          <div class="timeline-desc"><span data-es>Expansión de la planta productiva. Lanzamiento de las primeras líneas de licores nacionales.</span><span data-en>Expansion of the production plant. Launch of the first national liqueur lines.</span></div>
+          <div class="timeline-desc"><span data-es>Expansión de la planta productiva. Lanzamiento de Tres Plumas, que se convierte en ícono nacional.</span><span data-en>Production plant expansion. Launch of Tres Plumas, which becomes a national icon.</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">1970s</div>
@@ -1091,11 +1168,11 @@
         </div>
         <div class="timeline-item">
           <div class="timeline-year">2000s</div>
-          <div class="timeline-desc"><span data-es>Desarrollo de líneas premium y apertura a mercados europeos.</span><span data-en>Development of premium lines and entry into European markets.</span></div>
+          <div class="timeline-desc"><span data-es>Desarrollo de líneas premium. Apertura a mercados europeos y asiáticos.</span><span data-en>Development of premium lines. Entry into European and Asian markets.</span></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year"><span data-es>Hoy</span><span data-en>Today</span></div>
-          <div class="timeline-desc"><span data-es>Portfolio de más de 50 productos. Presencia en múltiples mercados internacionales.</span><span data-en>Portfolio of over 50 products. Presence in multiple international markets.</span></div>
+          <div class="timeline-desc"><span data-es>Más de 50 productos. Presencia en América, Europa y Asia. Líderes en innovación licorera argentina.</span><span data-en>Over 50 products. Present across the Americas, Europe and Asia. Leaders in Argentine spirits innovation.</span></div>
         </div>
       </div>
     </div>
@@ -1112,37 +1189,37 @@
     <div class="productos-editorial">
       <!-- Lista editorial -->
       <div class="productos-lista fade-in">
-        <a href="tres-plumas.html" class="producto-item" data-img="images/categoria-tresplumas-cuadrada.jpg" data-label="Línea clásica">
+        <a href="tres-plumas.html" class="producto-item" data-img="images/categoria-tresplumas.webp" data-label="Línea clásica">
           <span class="producto-num">01</span>
           <span class="producto-nombre">Tres Plumas</span>
           <span class="producto-tag"><span data-es>Licores clásicos, sello argentino</span><span data-en>Classic liqueurs, Argentine hallmark</span></span>
           <span class="producto-arrow">→</span>
         </a>
-        <a href="https://www.tamboliqueur.com.ar" target="_blank" class="producto-item" data-img="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1040&q=85" data-label="Esencias de Argentina">
+        <a href="https://www.tamboliqueur.com.ar" target="_blank" class="producto-item" data-img="images/categoria-tambo.webp" data-label="Esencias de Argentina">
           <span class="producto-num">02</span>
           <span class="producto-nombre">Tambo</span>
           <span class="producto-tag"><span data-es>Esencias auténticas de Argentina</span><span data-en>Authentic Argentine essences</span></span>
           <span class="producto-arrow">→</span>
         </a>
-        <a href="golden-age.html" class="producto-item" data-img="https://images.unsplash.com/photo-1546171753-97d7676e4602?w=1040&q=85" data-label="Línea premium">
+        <a href="golden-age.html" class="producto-item" data-img="images/categoria-golden-age.webp" data-label="Línea premium">
           <span class="producto-num">03</span>
           <span class="producto-nombre">Golden Age</span>
           <span class="producto-tag"><span data-es>Sofisticación en cada botella</span><span data-en>Sophistication in every bottle</span></span>
           <span class="producto-arrow">→</span>
         </a>
-        <a href="importados.html" class="producto-item" data-img="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=1040&q=85" data-label="Selección importada">
+        <a href="importados.html" class="producto-item" data-img="images/categoria-importados.webp" data-label="Selección importada">
           <span class="producto-num">04</span>
           <span class="producto-nombre">Importados</span>
           <span class="producto-tag"><span data-es>El mundo en una sola bodega</span><span data-en>The world in a single cellar</span></span>
           <span class="producto-arrow">→</span>
         </a>
-        <a href="espirituosas.html" class="producto-item" data-img="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1040&q=85" data-label="Destilación artesanal">
+        <a href="espirituosas.html" class="producto-item" data-img="images/categoria-espirituosas.webp" data-label="Destilación artesanal">
           <span class="producto-num">05</span>
           <span class="producto-nombre">Espirituosas</span>
           <span class="producto-tag"><span data-es>Un siglo de destilación artesanal</span><span data-en>A century of artisanal distillation</span></span>
           <span class="producto-arrow">→</span>
         </a>
-        <a href="sin-alcohol.html" class="producto-item" data-img="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=1040&q=85" data-label="Sin alcohol">
+        <a href="sin-alcohol.html" class="producto-item" data-img="images/categoria-sin-alcohol.jpg" data-label="Sin alcohol">
           <span class="producto-num">06</span>
           <span class="producto-nombre">Sin Alcohol</span>
           <span class="producto-tag"><span data-es>Todo el sabor, sin el alcohol</span><span data-en>All the flavour, none of the alcohol</span></span>
@@ -1160,38 +1237,51 @@
   <section id="exportacion">
     <div class="section-label"><span data-es>Exportación</span><span data-en>Export</span></div>
     <h2><span data-es>Presencia<br>internacional.</span><span data-en>International<br>presence.</span></h2>
-    <div class="exportacion-grid fade-in">
-      <div class="exportacion-texto">
-        <p><span data-es>Dellepiane exporta sus productos a mercados de Europa, América Latina y América del Norte, con acuerdos comerciales que garantizan la calidad y el posicionamiento de cada línea.</span><span data-en>Dellepiane exports its products to markets in Europe, Latin America and North America, with commercial agreements ensuring the quality and positioning of each line.</span></p>
-        <p><span data-es>Para consultas de importación y distribución, completá el formulario o escribinos directamente a</span><span data-en>For import and distribution enquiries, fill in the form or write to us at</span> <a href="mailto:comex@dellepiane.com.ar" style="color: var(--azul); text-decoration: none;">comex@dellepiane.com.ar</a></p>
+
+    <!-- Mapa + contacto lateral -->
+    <div class="exportacion-layout fade-in">
+
+      <!-- Mapa D3 con geografía real -->
+      <div class="exportacion-mapa">
+        <div id="mapa-d3"></div>
       </div>
-      <form>
-        <div class="form-grid">
-          <div class="form-grupo">
-            <label><span data-es>Nombre</span><span data-en>Name</span></label>
-            <input type="text" placeholder="{ph_nombre}">
+
+      <!-- Datos de contacto lateral -->
+      <div class="exportacion-contacto">
+        <p class="exportacion-intro">
+          <span data-es>Exportamos a más de 20 países en América, Europa y Asia. Para consultas de importación y distribución:</span>
+          <span data-en>We export to over 20 countries across the Americas, Europe and Asia. For import and distribution enquiries:</span>
+        </p>
+
+        <div class="exportacion-dato">
+          <span class="exportacion-dato-label"><span data-es>Comercio Exterior</span><span data-en>Export</span></span>
+          <a href="mailto:comex@dellepiane.com.ar">comex@dellepiane.com.ar</a>
+        </div>
+        <div class="exportacion-dato">
+          <span class="exportacion-dato-label"><span data-es>Teléfono</span><span data-en>Phone</span></span>
+          <a href="tel:+541147895100">(+54 11) 4789-5100</a>
+        </div>
+        <div class="exportacion-dato">
+          <span class="exportacion-dato-label"><span data-es>Contacto general</span><span data-en>General contact</span></span>
+          <a href="mailto:contacto@dellepiane.com.ar">contacto@dellepiane.com.ar</a>
+        </div>
+
+        <div class="exportacion-paises">
+          <div class="exportacion-region">
+            <span class="region-label"><span data-es>América</span><span data-en>Americas</span></span>
+            <span class="region-lista">Argentina · Uruguay · Chile · Paraguay · Brasil · Bolivia · Perú · Ecuador · Colombia · Venezuela · El Salvador · Costa Rica · Honduras · Estados Unidos</span>
           </div>
-          <div class="form-grupo">
-            <label><span data-es>Empresa</span><span data-en>Company</span></label>
-            <input type="text" placeholder="{ph_empresa}">
+          <div class="exportacion-region">
+            <span class="region-label">Europa</span>
+            <span class="region-lista">Holanda · Inglaterra · Italia</span>
+          </div>
+          <div class="exportacion-region">
+            <span class="region-label">Asia</span>
+            <span class="region-lista">China · Corea · India</span>
           </div>
         </div>
-        <div class="form-grid">
-          <div class="form-grupo">
-            <label><span data-es>País</span><span data-en>Country</span></label>
-            <input type="text" placeholder="{ph_pais}">
-          </div>
-          <div class="form-grupo">
-            <label>Email</label>
-            <input type="email" placeholder="{ph_email}">
-          </div>
-        </div>
-        <div class="form-grupo">
-          <label><span data-es>Mensaje</span><span data-en>Message</span></label>
-          <textarea placeholder="{ph_msg}"></textarea>
-        </div>
-        <button type="submit" class="btn-submit"><span data-es>Enviar consulta →</span><span data-en>Send enquiry →</span></button>
-      </form>
+      </div>
+
     </div>
   </section>
 
@@ -1454,6 +1544,120 @@
       /* Init */
       updateCounter(0);
       resetTimer();
+    })();
+  </script>
+
+  <!-- ── MAPA D3 ── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+  <script>
+    (function() {
+      var destinations = [
+        {lat:-34.9, lon:-56.2}, // Uruguay
+        {lat:-33.4, lon:-70.7}, // Chile
+        {lat:-25.3, lon:-57.6}, // Paraguay
+        {lat:-15.8, lon:-48.0}, // Brasil
+        {lat:-16.5, lon:-68.1}, // Bolivia
+        {lat:-12.0, lon:-77.0}, // Perú
+        {lat:-0.2,  lon:-78.5}, // Ecuador
+        {lat:4.7,   lon:-74.1}, // Colombia
+        {lat:10.5,  lon:-66.9}, // Venezuela
+        {lat:13.7,  lon:-89.2}, // El Salvador
+        {lat:9.9,   lon:-84.1}, // Costa Rica
+        {lat:14.1,  lon:-87.2}, // Honduras
+        {lat:38.9,  lon:-77.0}, // Estados Unidos
+        {lat:52.4,  lon:4.9},   // Holanda
+        {lat:51.5,  lon:-0.1},  // Inglaterra
+        {lat:41.9,  lon:12.5},  // Italia
+        {lat:39.9,  lon:116.4}, // China
+        {lat:37.6,  lon:127.0}, // Corea
+        {lat:28.6,  lon:77.2},  // India
+      ];
+      var BA = {lat:-34.6, lon:-58.4};
+
+      function buildMap() {
+        var wrap = document.getElementById('mapa-d3');
+        if (!wrap) return;
+        var W = wrap.offsetWidth || 680;
+        var H = Math.round(W * 0.50);
+
+        var svg = d3.select('#mapa-d3').append('svg')
+          .attr('width','100%')
+          .attr('viewBox','0 0 '+W+' '+H)
+          .style('display','block');
+
+        var proj = d3.geoNaturalEarth1()
+          .scale(W / 6.3)
+          .translate([W/2, H/2]);
+
+        var path = d3.geoPath().projection(proj);
+
+        fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
+          .then(function(r){ return r.json(); })
+          .then(function(world) {
+            var countries = topojson.feature(world, world.objects.countries);
+
+            // Countries — filled white/light, no borders
+            svg.selectAll('path.c')
+              .data(countries.features)
+              .join('path')
+              .attr('class','c')
+              .attr('d', path)
+              .attr('fill','rgba(250,250,248,0.18)')
+              .attr('stroke','rgba(250,250,248,0.06)')
+              .attr('stroke-width','0.4');
+
+            var ba = proj([BA.lon, BA.lat]);
+
+            // Dashed lines
+            destinations.forEach(function(d) {
+              var pt = proj([d.lon, d.lat]);
+              if (!pt || !ba) return;
+              var route = {type:'LineString', coordinates:[[BA.lon,BA.lat],[d.lon,d.lat]]};
+              svg.append('path')
+                .datum(route)
+                .attr('d', d3.geoPath().projection(proj)(route))
+                .attr('fill','none')
+                .attr('stroke','#83BADA')
+                .attr('stroke-width','0.8')
+                .attr('stroke-dasharray','3 3')
+                .attr('opacity','0.7');
+
+              svg.append('circle')
+                .attr('cx', pt[0]).attr('cy', pt[1])
+                .attr('r', 3)
+                .attr('fill','#45519E')
+                .attr('stroke','rgba(250,250,248,0.6)')
+                .attr('stroke-width','0.8');
+            });
+
+            // Buenos Aires
+            svg.append('circle')
+              .attr('cx', ba[0]).attr('cy', ba[1])
+              .attr('r', 9)
+              .attr('fill','#45519E')
+              .attr('opacity','0.18');
+            svg.append('circle')
+              .attr('cx', ba[0]).attr('cy', ba[1])
+              .attr('r', 5)
+              .attr('fill','#45519E')
+              .attr('stroke','#FAFAF8')
+              .attr('stroke-width','1.2');
+            svg.append('text')
+              .attr('x', ba[0]+9).attr('y', ba[1]-7)
+              .attr('font-size','9')
+              .attr('font-family','DM Sans, sans-serif')
+              .attr('font-weight','500')
+              .attr('fill','rgba(250,250,248,0.7)')
+              .text('Buenos Aires');
+          });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', buildMap);
+      } else {
+        buildMap();
+      }
     })();
   </script>
 
