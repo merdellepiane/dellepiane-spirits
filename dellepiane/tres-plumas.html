@@ -97,6 +97,7 @@
     .lang-toggle a.active { color: var(--azul); border-bottom: 1px solid var(--azul); }
     .lang-toggle span { color: var(--borde); }
 
+    .btn-tienda,
     .btn-tienda-nav {
       font-family: var(--sans);
       font-size: 11px;
@@ -104,14 +105,19 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       text-decoration: none;
-      color: var(--azul);
+      color: var(--blanco);
+      background: var(--azul);
       border: 1px solid var(--azul);
       padding: 7px 18px;
       transition: all 0.2s;
     }
 
-    .btn-tienda-nav:hover {
-      background: var(--azul);
+    .btn-tienda:hover,
+    .btn-tienda:focus,
+    .btn-tienda-nav:hover,
+    .btn-tienda-nav:focus {
+      background: #2F3D8A;
+      border-color: #2F3D8A;
       color: var(--blanco);
     }
 
@@ -260,7 +266,8 @@
 
     .tp-hero__logo {
       height: 84px;
-      width: auto;
+      width: 84px;
+      object-fit: contain;
       margin-bottom: 32px;
     }
 
@@ -367,7 +374,7 @@
       }
       .tp-hero__media { min-height: 380px; order: -1; }
       .tp-hero__info { padding: 48px 24px; }
-      .tp-hero__logo { height: 64px; }
+      .tp-hero__logo { height: 64px; width: 64px; }
       .tp-hero__actions { width: 100%; }
       .tp-cta-primary { justify-content: center; width: 100%; }
     }
@@ -521,6 +528,8 @@
       align-items: center;
     }
 
+    .tp-historia__texto { align-self: center; }
+
     .tp-historia__eyebrow {
       font-family: var(--sans);
       font-size: 12px;
@@ -543,38 +552,50 @@
       width: 64px;
       height: 3px;
       background: #C8202A;
-      margin: 24px 0 36px;
+      margin: 24px 0 40px;
     }
 
     .tp-historia__desc p {
       font-family: var(--sans);
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 300;
-      line-height: 1.85;
+      line-height: 1.9;
       color: #444;
-      max-width: 420px;
-      margin-bottom: 18px;
+      max-width: 440px;
+      margin-bottom: 22px;
     }
 
-    .tp-historia__desc p:last-child { margin-bottom: 32px; }
+    .tp-historia__desc p:last-child { margin-bottom: 0; }
 
-    .tp-historia__collage {
-      display: grid;
-      grid-template-columns: 1.4fr 1.1fr 0.9fr 0.9fr;
-      grid-template-rows: 210px 180px;
-      gap: 24px;
+    .tp-historia__slogan {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 19px;
+      line-height: 1.5;
+      color: #7A1F2A;
+      margin-top: 32px;
     }
 
-    .tp-historia__ph {
-      background: #E7DCC4;
+    .tp-historia__visual {
+      position: relative;
+      height: 100%;
+      min-height: 440px;
+      margin-bottom: 44px;
+    }
+
+    .tp-historia__hero-img {
+      width: 100%;
+      height: 100%;
+      background: #EDE4D2;
       border: 1px dashed #C9BB9C;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
     }
 
-    .tp-historia__ph img {
+    .tp-historia__hero-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -592,35 +613,38 @@
       padding: 8px;
     }
 
-    .tp-historia__foto {
-      grid-column: 1 / span 2;
-      grid-row: 1;
-    }
-
-    .tp-historia__retrato {
-      grid-column: 3;
-      grid-row: 1;
+    .tp-historia__badge {
+      position: absolute;
+      left: 36px;
+      bottom: -40px;
+      width: 124px;
+      height: 124px;
       border-radius: 50%;
+      background: #F5EFE3;
+      border: 1px solid #C9BB9C;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
-    .tp-historia__documento {
-      grid-column: 1 / span 2;
-      grid-row: 2;
+    .tp-historia__badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .tp-historia__sello {
-      grid-column: 3;
-      grid-row: 2;
-      border-radius: 50%;
-      justify-self: start;
-      width: 150px;
-      height: 150px;
-      align-self: start;
-    }
-
-    .tp-historia__botella {
-      grid-column: 4;
-      grid-row: 1 / span 2;
+    .tp-historia__badge-label {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #9C8F72;
+      padding: 6px;
+      line-height: 1.4;
     }
 
     @media (max-width: 900px) {
@@ -628,19 +652,13 @@
         grid-template-columns: 1fr;
         gap: 40px;
       }
+      .tp-historia__visual { min-height: 380px; }
     }
 
     @media (max-width: 768px) {
       .tp-historia { padding: 60px 24px; }
-      .tp-historia__collage {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 160px 140px 130px;
-      }
-      .tp-historia__foto { grid-column: 1 / span 2; grid-row: 1; }
-      .tp-historia__retrato { grid-column: 1; grid-row: 2; width: 130px; height: 130px; }
-      .tp-historia__documento { grid-column: 2; grid-row: 2; }
-      .tp-historia__sello { grid-column: 1; grid-row: 3; width: 110px; height: 110px; }
-      .tp-historia__botella { grid-column: 2; grid-row: 3; }
+      .tp-historia__visual { min-height: 320px; margin-bottom: 56px; }
+      .tp-historia__badge { width: 96px; height: 96px; left: 24px; bottom: -32px; }
     }
 
     /* ── INSPIRATE ── */
@@ -975,6 +993,7 @@
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
+  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
 
@@ -996,7 +1015,7 @@
   <div class="tp-hero">
 
     <div class="tp-hero__info">
-      <img class="tp-hero__logo" src="images/isologo-tresplumas.png" alt="Tres Plumas">
+      <img class="tp-hero__logo" src="images/isologo-tres-plumas.png" alt="Tres Plumas">
 
       <h1 class="tp-hero__title">Tres<br>Plumas</h1>
 
@@ -1075,40 +1094,28 @@
       <div class="tp-historia__texto">
         <p class="tp-historia__eyebrow"><span data-es>Nuestra historia</span><span data-en>Our history</span></p>
         <h2 class="tp-historia__title">
-          <span data-es>El nacimiento<br>de un clásico</span>
-          <span data-en>The birth<br>of a classic</span>
+          <span data-es>Casi 100 años.<br>Plenamente vigente.</span>
+          <span data-en>Almost 100 years.<br>Fully current.</span>
         </h2>
         <div class="tp-historia__divider"></div>
         <div class="tp-historia__desc">
-          <p><span data-es>Desde 1898, Tres Plumas acompaña a los argentinos en los momentos que importan.</span><span data-en>Since 1898, Tres Plumas has accompanied Argentines in the moments that matter.</span></p>
-          <p><span data-es>Su receta original, transmitida de generación en generación, es el reflejo de una tradición que sigue viva en cada botella.</span><span data-en>Its original recipe, passed down from generation to generation, reflects a tradition that stays alive in every bottle.</span></p>
+          <p><span data-es>Desde la década de 1930, Tres Plumas forma parte de las mesas argentinas con una receta que atravesó generaciones sin perder su esencia.</span><span data-en>Since the 1930s, Tres Plumas has been part of Argentine tables with a recipe that has crossed generations without losing its essence.</span></p>
+          <p><span data-es>Hoy sigue inspirando nuevas formas de disfrutarla: en la coctelería, la pastelería, los postres y las sobremesas. La misma calidad de siempre, con la versatilidad que la mantiene vigente.</span><span data-en>Today it keeps inspiring new ways to enjoy it: in cocktails, pastry, desserts and get-togethers. The same quality as always, with the versatility that keeps it current.</span></p>
         </div>
-        <a href="index.html#historia" class="tp-cta-secondary">
-          <span data-es>Conocé más sobre nuestra historia</span>
-          <span data-en>Learn more about our history</span>
-        </a>
+        <p class="tp-historia__slogan">
+          <span data-es>«Si hay licor, que sea Tres Plumas»</span>
+          <span data-en>"If there's liqueur, let it be Tres Plumas"</span>
+        </p>
       </div>
 
-      <div class="tp-historia__collage">
-        <!-- Reemplazar por: images/historia-foto.jpg -->
-        <div class="tp-historia__ph tp-historia__foto">
-          <span class="tp-historia__ph-label"><span data-es>Foto histórica</span><span data-en>Historic photo</span></span>
+      <div class="tp-historia__visual">
+        <!-- Reemplazar por: images/historia-presente.jpg (escena contemporánea: coctelería, pastelería o sobremesa) -->
+        <div class="tp-historia__hero-img">
+          <span class="tp-historia__ph-label"><span data-es>Imagen contemporánea<br>(coctelería / pastelería / sobremesa)</span><span data-en>Contemporary image<br>(cocktails / pastry / get-together)</span></span>
         </div>
-        <!-- Reemplazar por: images/historia-retrato.jpg -->
-        <div class="tp-historia__ph tp-historia__retrato">
-          <span class="tp-historia__ph-label"><span data-es>Retrato</span><span data-en>Portrait</span></span>
-        </div>
-        <!-- Reemplazar por: images/historia-documento.jpg -->
-        <div class="tp-historia__ph tp-historia__documento">
-          <span class="tp-historia__ph-label"><span data-es>Documento / etiqueta</span><span data-en>Document / label</span></span>
-        </div>
-        <!-- Reemplazar por: images/historia-sello.jpg -->
-        <div class="tp-historia__ph tp-historia__sello">
-          <span class="tp-historia__ph-label"><span data-es>Sello</span><span data-en>Seal</span></span>
-        </div>
-        <!-- Reemplazar por: images/historia-botella.jpg -->
-        <div class="tp-historia__ph tp-historia__botella">
-          <span class="tp-historia__ph-label"><span data-es>Botella antigua</span><span data-en>Vintage bottle</span></span>
+        <!-- Reemplazar por: images/historia-sello.jpg (único detalle histórico: etiqueta o botella original) -->
+        <div class="tp-historia__badge">
+          <span class="tp-historia__badge-label"><span data-es>Sello histórico</span><span data-en>Historic seal</span></span>
         </div>
       </div>
     </div>
@@ -1232,28 +1239,24 @@
   <div class="otras-lineas">
     <div class="section-label"><span data-es>Otras líneas</span><span data-en>Other lines</span></div>
     <div class="otras-grid">
+      <a href="https://www.tamboliqueur.com.ar" target="_blank" class="otra-item">
+        <span class="otra-nombre">Tambo</span>
+        <span class="otra-arrow">↗</span>
+      </a>
       <a href="golden-age.html" class="otra-item">
         <span class="otra-nombre">Golden Age</span>
         <span class="otra-arrow">→</span>
       </a>
-      <a href="https://www.tamboliqueur.com.ar" target="_blank" class="otra-item">
-        <span class="otra-nombre">Tambo Liqueur</span>
-        <span class="otra-arrow">↗</span>
-      </a>
-      <a href="premium.html" class="otra-item">
-        <span class="otra-nombre">Premium</span>
-        <span class="otra-arrow">→</span>
-      </a>
-      <a href="petacas.html" class="otra-item">
-        <span class="otra-nombre">Petacas</span>
+      <a href="importados.html" class="otra-item">
+        <span class="otra-nombre">Importados</span>
         <span class="otra-arrow">→</span>
       </a>
       <a href="espirituosas.html" class="otra-item">
         <span class="otra-nombre">Espirituosas</span>
         <span class="otra-arrow">→</span>
       </a>
-      <a href="importados.html" class="otra-item">
-        <span class="otra-nombre">Importados</span>
+      <a href="sin-alcohol.html" class="otra-item">
+        <span class="otra-nombre">Sin Alcohol</span>
         <span class="otra-arrow">→</span>
       </a>
     </div>

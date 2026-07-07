@@ -1,0 +1,12 @@
+:root {
+  --nav-link-color: #586276;
+}
+
+.nav-links a:not(.btn-tienda):not(.btn-tienda-nav) {
+  color: var(--nav-link-color);
+}
+
+.nav-links a:not(.btn-tienda):not(.btn-tienda-nav):hover,
+.nav-links a:not(.btn-tienda):not(.btn-tienda-nav):focus {
+  color: var(--azul);
+}
