@@ -13,7 +13,7 @@
       --azul: #3B4BA8;
       --negro: #0E0E0E;
       --blanco: #FAFAF8;
-      --gris: #888;
+      --gris: #6B6B6B;
       --gris-claro: #F4F4F2;
       --borde: #E0E0DC;
       --serif: 'Cormorant Garamond', serif;
@@ -97,7 +97,6 @@
     .lang-toggle a.active { color: var(--azul); border-bottom: 1px solid var(--azul); }
     .lang-toggle span { color: var(--borde); }
 
-    .btn-tienda,
     .btn-tienda-nav {
       font-family: var(--sans);
       font-size: 11px;
@@ -112,14 +111,7 @@
       transition: all 0.2s;
     }
 
-    .btn-tienda:hover,
-    .btn-tienda:focus,
-    .btn-tienda-nav:hover,
-    .btn-tienda-nav:focus {
-      background: #2F3D8A;
-      border-color: #2F3D8A;
-      color: var(--blanco);
-    }
+    .btn-tienda-nav:hover { background: #36417F; border-color: #36417F; }
 
     /* ── HERO LINEA ── */
     .linea-hero {
@@ -249,7 +241,7 @@
     /* ── HERO TRES PLUMAS (rediseño) ── */
     .tp-hero {
       padding-top: 64px; /* alto del nav fijo */
-      min-height: calc(100vh - 64px);
+      min-height: clamp(500px, 56vh, 600px);
       display: grid;
       grid-template-columns: minmax(340px, 32%) 1fr;
       align-items: stretch;
@@ -257,7 +249,7 @@
     }
 
     .tp-hero__info {
-      padding: 80px 64px;
+      padding: 56px 64px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -266,8 +258,10 @@
 
     .tp-hero__logo {
       height: 84px;
-      width: 84px;
+      width: auto;
+      max-width: 180px;
       object-fit: contain;
+      align-self: flex-start;
       margin-bottom: 32px;
     }
 
@@ -331,6 +325,7 @@
     .tp-cta-secondary {
       display: inline-flex;
       align-items: center;
+      align-self: flex-start;
       gap: 8px;
       font-family: var(--sans);
       font-size: 12px;
@@ -370,11 +365,11 @@
     @media (max-width: 768px) {
       .tp-hero {
         grid-template-columns: 1fr;
-        min-height: auto;
+        height: auto;
       }
       .tp-hero__media { min-height: 380px; order: -1; }
       .tp-hero__info { padding: 48px 24px; }
-      .tp-hero__logo { height: 64px; width: 64px; }
+      .tp-hero__logo { height: 64px; }
       .tp-hero__actions { width: 100%; }
       .tp-cta-primary { justify-content: center; width: 100%; }
     }
@@ -421,26 +416,16 @@
     }
 
     .tp-explora__track {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 4px 4px 12px;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
     }
-
-    .tp-explora__track::-webkit-scrollbar { display: none; }
 
     .tp-explora__card {
       position: relative;
-      flex: 0 0 auto;
-      width: 200px;
       aspect-ratio: 3 / 4;
       border-radius: 6px;
       overflow: hidden;
-      scroll-snap-align: start;
       text-decoration: none;
       display: block;
       background: var(--negro);
@@ -460,8 +445,8 @@
       content: '';
       position: absolute;
       left: 0; right: 0; bottom: 0;
-      height: 55%;
-      background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0));
+      height: 65%;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
       pointer-events: none;
     }
 
@@ -474,45 +459,20 @@
       font-size: 20px;
       font-weight: 400;
       color: var(--blanco);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.55);
     }
-
-    .tp-explora__arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: none;
-      background: rgba(250,250,248,0.92);
-      color: var(--negro);
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.2s, opacity 0.2s;
-      z-index: 2;
-    }
-
-    .tp-explora__arrow:hover { background: var(--blanco); }
-    .tp-explora__arrow--prev { left: -8px; }
-    .tp-explora__arrow--next { right: -8px; }
-    .tp-explora__arrow[disabled] { opacity: 0; pointer-events: none; }
 
     @media (max-width: 900px) {
       .tp-explora__inner {
         grid-template-columns: 1fr;
         gap: 28px;
       }
-      .tp-explora__arrow--prev { left: 4px; }
-      .tp-explora__arrow--next { right: 4px; }
+      .tp-explora__track { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
       .tp-explora { padding: 56px 0; }
       .tp-explora__inner { padding: 0 24px; }
-      .tp-explora__card { width: 160px; }
     }
 
     /* ── NUESTRA HISTORIA (collage) ── */
@@ -587,12 +547,9 @@
     .tp-historia__hero-img {
       width: 100%;
       height: 100%;
-      background: #EDE4D2;
-      border: 1px dashed #C9BB9C;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-color: #EDE4D2;
+      background-size: cover;
+      background-position: center;
     }
 
     .tp-historia__hero-img img {
@@ -602,17 +559,6 @@
       display: block;
     }
 
-    .tp-historia__ph-label {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #9C8F72;
-      text-align: center;
-      padding: 8px;
-    }
-
     .tp-historia__badge {
       position: absolute;
       left: 36px;
@@ -620,31 +566,10 @@
       width: 124px;
       height: 124px;
       border-radius: 50%;
-      background: #F5EFE3;
+      background-color: #F5EFE3;
+      background-size: cover;
+      background-position: center;
       border: 1px solid #C9BB9C;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .tp-historia__badge img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .tp-historia__badge-label {
-      font-family: var(--sans);
-      font-size: 9px;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #9C8F72;
-      padding: 6px;
-      line-height: 1.4;
     }
 
     @media (max-width: 900px) {
@@ -755,31 +680,10 @@
     .tp-inspirate__card-img {
       width: 100%;
       aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: var(--gris-claro);
-      border: 1px dashed var(--borde);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-color: var(--gris-claro);
+      background-size: cover;
+      background-position: center;
       margin-bottom: 12px;
-    }
-
-    .tp-inspirate__card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .tp-inspirate__card-ph-label {
-      font-family: var(--sans);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gris);
-      text-align: center;
-      padding: 6px;
     }
 
     .tp-inspirate__card-title {
@@ -869,7 +773,7 @@
     .tp-rasgos__title {
       font-family: var(--sans);
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 500;
       color: var(--negro);
       line-height: 1.4;
       margin-bottom: 6px;
@@ -993,7 +897,6 @@
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
-  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
 
@@ -1041,7 +944,7 @@
     </div>
 
     <div class="tp-hero__media">
-      <img src="images/categoria-tresplumas.webp" alt="Tres Plumas — Dellepiane">
+      <img src="images/hero-tresplumas.jpg" alt="Tres Plumas — Dellepiane">
     </div>
 
   </div>
@@ -1058,32 +961,24 @@
       </div>
 
       <div class="tp-explora__carousel-wrap">
-        <button class="tp-explora__arrow tp-explora__arrow--prev" id="tpExploraPrev" aria-label="Anterior" disabled>←</button>
-
-        <div class="tp-explora__track" id="tpExploraTrack">
+        <div class="tp-explora__track">
           <a href="#" class="tp-explora__card">
-            <img src="images/categoria-tresplumas.webp" alt="Clásicos">
-            <span class="tp-explora__card-label"><span data-es>Clásicos</span><span data-en>Classics</span></span>
+            <img src="images/explora-cafes.jpg" alt="Cafés">
+            <span class="tp-explora__card-label"><span data-es>Cafés</span><span data-en>Coffee</span></span>
           </a>
           <a href="#" class="tp-explora__card">
-            <img src="images/categoria-tresplumas.webp" alt="Cremas">
-            <span class="tp-explora__card-label"><span data-es>Cremas</span><span data-en>Creams</span></span>
+            <img src="images/explora-cremosos.jpg" alt="Cremosos">
+            <span class="tp-explora__card-label"><span data-es>Cremosos</span><span data-en>Creamy</span></span>
           </a>
           <a href="#" class="tp-explora__card">
-            <img src="images/categoria-tresplumas.webp" alt="Frutales">
+            <img src="images/explora-frutales.jpg" alt="Frutales">
             <span class="tp-explora__card-label"><span data-es>Frutales</span><span data-en>Fruit</span></span>
           </a>
           <a href="#" class="tp-explora__card">
-            <img src="images/categoria-tresplumas.webp" alt="Especiales">
-            <span class="tp-explora__card-label"><span data-es>Especiales</span><span data-en>Specials</span></span>
-          </a>
-          <a href="#" class="tp-explora__card">
-            <img src="images/categoria-tresplumas.webp" alt="Cremas Premium">
-            <span class="tp-explora__card-label"><span data-es>Premium</span><span data-en>Premium</span></span>
+            <img src="images/explora-clasicos.jpg" alt="Clásicos">
+            <span class="tp-explora__card-label"><span data-es>Clásicos</span><span data-en>Classics</span></span>
           </a>
         </div>
-
-        <button class="tp-explora__arrow tp-explora__arrow--next" id="tpExploraNext" aria-label="Siguiente">→</button>
       </div>
     </div>
   </section>
@@ -1109,14 +1004,8 @@
       </div>
 
       <div class="tp-historia__visual">
-        <!-- Reemplazar por: images/historia-presente.jpg (escena contemporánea: coctelería, pastelería o sobremesa) -->
-        <div class="tp-historia__hero-img">
-          <span class="tp-historia__ph-label"><span data-es>Imagen contemporánea<br>(coctelería / pastelería / sobremesa)</span><span data-en>Contemporary image<br>(cocktails / pastry / get-together)</span></span>
-        </div>
-        <!-- Reemplazar por: images/historia-sello.jpg (único detalle histórico: etiqueta o botella original) -->
-        <div class="tp-historia__badge">
-          <span class="tp-historia__badge-label"><span data-es>Sello histórico</span><span data-en>Historic seal</span></span>
-        </div>
+        <div class="tp-historia__hero-img" style="background-image:url('images/historia-presente.jpg')"></div>
+        <div class="tp-historia__badge" style="background-image:url('images/historia-sello.jpg')"></div>
       </div>
     </div>
   </section>
@@ -1126,8 +1015,7 @@
     <div class="tp-inspirate__grid">
 
       <div class="tp-inspirate__media">
-        <!-- Reemplazar por: images/inspirate-cover.jpg -->
-        <img src="images/categoria-tresplumas.webp" alt="Inspirate — Tres Plumas">
+        <img src="images/inspirate-cover.jpg" alt="Inspirate — Tres Plumas">
       </div>
 
       <div class="tp-inspirate__content">
@@ -1140,7 +1028,7 @@
           <span data-es>Descubrí tragos y postres ideales para cada ocasión con Tres Plumas.</span>
           <span data-en>Discover drinks and desserts perfect for every occasion with Tres Plumas.</span>
         </p>
-        <a href="https://www.instagram.com/" target="_blank" class="tp-cta-secondary tp-cta-secondary--icon">
+        <a href="https://www.instagram.com/licorestresplumas/" target="_blank" class="tp-cta-secondary tp-cta-secondary--icon">
           <span data-es>Ver más en Instagram</span>
           <span data-en>See more on Instagram</span>
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1153,27 +1041,21 @@
 
       <div class="tp-inspirate__carousel-wrap">
         <div class="tp-inspirate__track" id="tpInspirateTrack">
-          <a href="#" class="tp-inspirate__card">
-            <!-- Reemplazar por: images/inspirate-negroni.jpg -->
-            <div class="tp-inspirate__card-img">
-              <span class="tp-inspirate__card-ph-label"><span data-es>Foto del trago</span><span data-en>Drink photo</span></span>
-            </div>
+          <!-- Reemplazar href por el link real del posteo de Instagram -->
+          <a href="https://www.instagram.com/licorestresplumas/" target="_blank" rel="noopener" class="tp-inspirate__card">
+            <div class="tp-inspirate__card-img" style="background-image:url('images/inspirate-negroni.jpg')"></div>
             <p class="tp-inspirate__card-title"><span data-es>Negroni con Tres Plumas</span><span data-en>Negroni with Tres Plumas</span></p>
             <p class="tp-inspirate__card-sub"><span data-es>Cóctel clásico</span><span data-en>Classic cocktail</span></p>
           </a>
-          <a href="#" class="tp-inspirate__card">
-            <!-- Reemplazar por: images/inspirate-torta.jpg -->
-            <div class="tp-inspirate__card-img">
-              <span class="tp-inspirate__card-ph-label"><span data-es>Foto del postre</span><span data-en>Dessert photo</span></span>
-            </div>
+          <!-- Reemplazar href por el link real del posteo de Instagram -->
+          <a href="https://www.instagram.com/licorestresplumas/" target="_blank" rel="noopener" class="tp-inspirate__card">
+            <div class="tp-inspirate__card-img" style="background-image:url('images/inspirate-torta.jpg')"></div>
             <p class="tp-inspirate__card-title"><span data-es>Torta de chocolate y licor de café</span><span data-en>Chocolate cake with coffee liqueur</span></p>
             <p class="tp-inspirate__card-sub"><span data-es>Receta dulce</span><span data-en>Sweet recipe</span></p>
           </a>
-          <a href="#" class="tp-inspirate__card">
-            <!-- Reemplazar por: images/inspirate-sour.jpg -->
-            <div class="tp-inspirate__card-img">
-              <span class="tp-inspirate__card-ph-label"><span data-es>Foto del trago</span><span data-en>Drink photo</span></span>
-            </div>
+          <!-- Reemplazar href por el link real del posteo de Instagram -->
+          <a href="https://www.instagram.com/licorestresplumas/" target="_blank" rel="noopener" class="tp-inspirate__card">
+            <div class="tp-inspirate__card-img" style="background-image:url('images/inspirate-sour.jpg')"></div>
             <p class="tp-inspirate__card-title">Tres Plumas Sour</p>
             <p class="tp-inspirate__card-sub"><span data-es>Cóctel refrescante</span><span data-en>Refreshing cocktail</span></p>
           </a>
@@ -1293,38 +1175,6 @@
 
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === 'en') setLang('en');
-    })();
-  </script>
-
-  <script>
-    /* ── Carrusel "Explorá nuestra línea" ── */
-    (function () {
-      const track = document.getElementById('tpExploraTrack');
-      const prev = document.getElementById('tpExploraPrev');
-      const next = document.getElementById('tpExploraNext');
-      if (!track || !prev || !next) return;
-
-      function step() {
-        const card = track.querySelector('.tp-explora__card');
-        const gap = parseFloat(getComputedStyle(track).gap) || 20;
-        return card ? card.offsetWidth + gap : 220;
-      }
-
-      function updateArrows() {
-        const max = track.scrollWidth - track.clientWidth - 2;
-        prev.disabled = track.scrollLeft <= 0;
-        next.disabled = track.scrollLeft >= max;
-      }
-
-      prev.addEventListener('click', function () {
-        track.scrollBy({ left: -step(), behavior: 'smooth' });
-      });
-      next.addEventListener('click', function () {
-        track.scrollBy({ left: step(), behavior: 'smooth' });
-      });
-      track.addEventListener('scroll', updateArrows);
-      window.addEventListener('resize', updateArrows);
-      updateArrows();
     })();
   </script>
 
