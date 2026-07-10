@@ -626,17 +626,17 @@
       max-width: var(--max-w);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
       gap: 48px;
       padding-bottom: 56px;
       border-bottom: 1px solid #1A1A1A;
     }
 
     .contacto-marca {
-      font-family: var(--serif);
-      font-size: 26px;
-      color: var(--blanco);
-      margin-bottom: 12px;
+      height: 58px;
+      width: auto;
+      display: block;
+      margin-bottom: 16px;
     }
 
     .contacto-tagline { font-size: 14px; font-weight: 300; color: var(--gris); max-width: 320px; line-height: 1.6; }
@@ -662,10 +662,28 @@
 
     .contacto-col a:hover { color: var(--blanco); }
 
+    .btn-acceso {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--blanco);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 8px 12px;
+      transition: all 0.2s;
+    }
+
+    .btn-acceso:hover { background: var(--blanco); color: var(--negro); border-color: var(--blanco); }
+
     .footer-bottom {
       max-width: var(--max-w);
       margin: 0 auto;
-      padding-top: 32px;
+      padding-top: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -925,7 +943,7 @@
   <footer id="contacto">
     <div class="contacto-grid">
       <div>
-        <div class="contacto-marca">Dellepiane</div>
+        <img src="images/logo-blanco.png" alt="Dellepiane Spirits" class="contacto-marca">
         <p class="contacto-tagline"><span data-es>Licores y espirituosas premium elaborados en Argentina desde 1898.</span><span data-en>Premium liqueurs and spirits crafted in Argentina since 1898.</span></p>
       </div>
       <div class="contacto-col">
@@ -940,9 +958,15 @@
         <a href="https://www.facebook.com/dellepianespirits" target="_blank">Facebook</a>
         <a href="https://www.youtube.com/user/dellepianesanluis" target="_blank">YouTube</a>
       </div>
+      <div class="contacto-col">
+        <h4><span data-es>Acceso</span><span data-en>Access</span></h4>
+        <a href="http://dellepianeweb.dyndns.org:800/Login.aspx?ReturnUrl=%2fdefault.aspx" target="_blank" rel="noopener" class="btn-acceso">
+          <span data-es>Acceso exclusivo</span><span data-en>Exclusive access</span>
+        </a>
+      </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-legal"><span data-es>Beber con moderación. Prohibida su venta a menores de 18 años.<br>© 2026 Dellepiane S.A. Todos los derechos reservados.</span><span data-en>Drink responsibly. Not for sale to persons under 18 years of age.<br>© 2026 Dellepiane S.A. All rights reserved.</span></p>
+      <p class="footer-legal"><span data-es>Beber con moderación. Prohibida su venta a menores de 18 años. © 2026 Dellepiane S.A. Todos los derechos reservados.</span><span data-en>Drink responsibly. Not for sale to persons under 18 years of age. © 2026 Dellepiane S.A. All rights reserved.</span></p>
       <p class="footer-copy">Buenos Aires, Argentina</p>
     </div>
   </footer>
