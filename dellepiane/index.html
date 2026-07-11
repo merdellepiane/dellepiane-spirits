@@ -1072,6 +1072,21 @@
     }
 
     /* ── RESPONSIVE ── */
+
+    /* Rango intermedio: la columna de la lista se angosta antes de llegar
+       al breakpoint mobile, y el nombre + la bajada chocan si siguen en
+       la misma fila. Acá se apilan: nombre arriba, bajada debajo. */
+    @media (max-width: 1180px) and (min-width: 769px) {
+      .productos-editorial { grid-template-columns: 1fr 400px; gap: 32px; }
+      .producto-item { flex-wrap: wrap; }
+      .producto-nombre { font-size: 26px; flex: 1 1 auto; }
+      .producto-tag {
+        flex: 1 1 100%;
+        margin: 6px 0 0 52px;
+        order: 3;
+      }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
