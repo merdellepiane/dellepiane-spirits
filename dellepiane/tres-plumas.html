@@ -848,6 +848,7 @@
 
     .otra-item:hover { background: var(--gris-claro); }
     .otra-item:hover .otra-nombre { color: var(--azul); }
+    .otra-item--empty { pointer-events: none; }
 
     .otra-nombre {
       font-family: var(--serif);
@@ -1210,6 +1211,8 @@
         <span class="otra-nombre">Sin Alcohol</span>
         <span class="otra-arrow">→</span>
       </a>
+      <!-- Casillero libre: si se suma una 6ª línea, reemplazar este div por un <a class="otra-item"> igual a los de arriba -->
+      <div class="otra-item otra-item--empty" aria-hidden="true"></div>
     </div>
   </div>
 
