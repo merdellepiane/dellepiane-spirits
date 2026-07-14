@@ -16,6 +16,7 @@
       --gris: #6B6B6B;
       --gris-claro: #F4F4F2;
       --borde: #E0E0DC;
+      --accent: var(--azul);
       --serif: 'Cormorant Garamond', serif;
       --sans: 'DM Sans', sans-serif;
     }
@@ -36,31 +37,45 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAVBAR ── */
-    nav {
+    /* ── NAVBAR (idéntico al index) ── */
+    nav.site-nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
+      background: var(--blanco);
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 48px;
       height: 64px;
-      background: var(--blanco);
-      border-bottom: 1px solid var(--borde);
     }
 
     .nav-logo {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      display: flex;
+      align-items: center;
       text-decoration: none;
-      color: var(--negro);
     }
 
-    .nav-back {
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
       font-family: var(--sans);
       font-size: 12px;
       font-weight: 400;
@@ -68,14 +83,10 @@
       text-transform: uppercase;
       text-decoration: none;
       color: var(--gris);
-      display: flex;
-      align-items: center;
-      gap: 8px;
       transition: color 0.2s;
     }
 
-    .nav-back:hover { color: var(--negro); }
-    .nav-back::before { content: '←'; }
+    .nav-links a:hover { color: var(--negro); }
 
     .nav-right {
       display: flex;
@@ -116,10 +127,188 @@
     .btn-tienda:focus,
     .btn-tienda-nav:hover,
     .btn-tienda-nav:focus {
-      background: #2F3D8A;
-      border-color: #2F3D8A;
+      background: #36417F;
+      border-color: #36417F;
       color: var(--blanco);
     }
+
+    /* ── DROPDOWN PRODUCTOS (desktop) ── */
+    .nav-drop { position: relative; }
+
+    .nav-drop > a::after {
+      content: '▾';
+      font-size: 9px;
+      margin-left: 6px;
+      color: var(--gris);
+      transition: color 0.2s;
+    }
+
+    .nav-drop:hover > a::after,
+    .nav-drop:focus-within > a::after { color: var(--negro); }
+
+    .nav-drop-panel {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      min-width: 230px;
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      box-shadow: 0 12px 32px rgba(14,14,14,0.08);
+      padding: 12px 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+      z-index: 110;
+    }
+
+    .nav-drop:hover .nav-drop-panel,
+    .nav-drop:focus-within .nav-drop-panel {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .nav-drop-panel a {
+      display: block;
+      padding: 10px 24px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: none;
+      text-decoration: none;
+      color: var(--negro);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-drop-panel a:hover {
+      background: var(--gris-claro);
+      color: var(--azul);
+    }
+
+    .nav-drop-divider {
+      height: 1px;
+      background: var(--borde);
+      margin: 10px 24px;
+    }
+
+    .nav-drop-panel a.nav-drop-catalogo {
+      color: var(--azul);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .nav-drop-panel a.nav-drop-catalogo::after {
+      content: '↓';
+      margin-left: 6px;
+      font-size: 12px;
+    }
+
+    /* ── HAMBURGUESA + MENÚ MOBILE ── */
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--negro);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    body.nav-open .nav-burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    body.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+    body.nav-open .nav-burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0; right: 0;
+      bottom: 0;
+      background: var(--blanco);
+      z-index: 99;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    body.nav-open .nav-mobile { display: block; }
+    body.nav-open { overflow: hidden; }
+
+    .nav-mobile a {
+      display: block;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--negro);
+      padding: 16px 0;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .nav-mobile-sub {
+      display: none;
+      padding-left: 16px;
+    }
+
+    .nav-mobile-sub.open { display: block; }
+
+    .nav-mobile-sub a {
+      font-size: 13px;
+      text-transform: none;
+      letter-spacing: 0.04em;
+      color: #444;
+      padding: 12px 0;
+    }
+
+    .nav-mobile-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--negro);
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--borde);
+      padding: 16px 0;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .nav-mobile-toggle::after {
+      content: '▾';
+      font-size: 11px;
+      color: var(--gris);
+      transition: transform 0.2s;
+    }
+
+    .nav-mobile-toggle.open::after { transform: rotate(180deg); }
+
+    .nav-mobile .nav-drop-catalogo {
+      color: var(--azul);
+      font-weight: 500;
+    }
+
 
     /* ── HERO LINEA ── */
     .linea-hero {
@@ -138,13 +327,37 @@
       height: 100%;
     }
 
-    .linea-imagen img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.85;
-      display: block;
+    .li-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.1s ease;
     }
+
+    .li-slide.active { opacity: 1; }
+
+    .li-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 24px;
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .li-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(250,250,248,0.45);
+      border: none; padding: 0;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .li-dot.active { background: var(--blanco); transform: scale(1.6); }
+
 
     /* Placeholder cuando no hay imagen */
     .img-placeholder {
@@ -246,110 +459,106 @@
     .btn-conseguilos:hover { opacity: 0.85; }
     .btn-conseguilos::after { content: '→'; font-size: 16px; }
 
-    /* ── CARACTERISTICAS ── */
-    .linea-caracteristicas {
-      padding: 80px 48px;
-      background: var(--gris-claro);
-      border-top: 1px solid var(--borde);
-    }
-
-    .caract-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--borde);
-      margin-top: 48px;
-    }
-
-    .caract-item {
-      background: var(--gris-claro);
-      padding: 40px 36px;
-    }
-
-    .caract-num {
-      font-family: var(--serif);
-      font-size: 40px;
-      font-weight: 300;
-      color: var(--azul);
-      margin-bottom: 8px;
-    }
-
-    .caract-label {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gris);
-      margin-bottom: 12px;
-    }
-
-    .caract-desc {
-      font-size: 14px;
-      font-weight: 300;
-      color: #555;
-      line-height: 1.6;
-    }
-
-    /* ── OTRAS LINEAS ── */
-    .otras-lineas {
-      padding: 80px 48px;
+    /* ── PRODUCTOS DE LA LÍNEA (catálogo editorial) ── */
+    .linea-productos {
       background: var(--blanco);
       border-top: 1px solid var(--borde);
+      padding: 96px 48px;
     }
 
-    .section-label {
+    .lp-inner { max-width: 1180px; margin: 0 auto; }
+
+    .lp-label {
       font-family: var(--sans);
       font-size: 11px;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gris);
-      margin-bottom: 40px;
+      color: var(--accent);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .section-label::before {
-      content: '';
-      display: inline-block;
-      width: 24px;
-      height: 1px;
-      background: var(--gris);
+    .lp-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+
+    .lp-titulo {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 56px;
     }
 
-    .otras-grid {
+    .lp-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--borde);
+      grid-template-columns: repeat(var(--cols, 3), 1fr);
+      gap: 36px 28px;
     }
 
-    .otra-item {
-      background: var(--blanco);
-      padding: 36px 32px;
+    .lp-item {
+      display: block;
       text-decoration: none;
       color: var(--negro);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: background 0.2s;
     }
 
-    .otra-item:hover { background: var(--gris-claro); }
-    .otra-item:hover .otra-nombre { color: var(--azul); }
-    .otra-item--empty { pointer-events: none; }
+    .lp-foto {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--gris-claro);
+      margin-bottom: 16px;
+    }
 
-    .otra-nombre {
+    .lp-foto img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .lp-item:hover .lp-foto img { transform: scale(1.04); }
+
+    .lp-marca-logo {
+      height: 26px;
+      width: auto;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .lp-nombre {
       font-family: var(--serif);
-      font-size: 26px;
+      font-size: 17px;
       font-weight: 400;
-      transition: color 0.2s;
+      line-height: 1.3;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
     }
 
-    .otra-arrow {
-      font-size: 18px;
+    .lp-nombre::after {
+      content: '↗';
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateY(2px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .lp-item:hover .lp-nombre::after { opacity: 1; transform: translateY(0); }
+
+    .lp-desc {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 300;
       color: var(--gris);
+      line-height: 1.6;
+      margin-top: 4px;
     }
 
     /* ── FOOTER ── */
@@ -377,8 +586,8 @@
     }
 
     .contacto-tagline {
-      font-size: 13px;
-      color: rgba(250,250,248,0.35);
+      font-size: 14px;
+      color: rgba(250,250,248,0.55);
       line-height: 1.7;
       max-width: 280px;
     }
@@ -389,16 +598,16 @@
       font-weight: 500;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(250,250,248,0.35);
+      color: rgba(250,250,248,0.5);
       margin-bottom: 20px;
     }
 
     .contacto-col a,
     .contacto-col p {
       display: block;
-      font-size: 14px;
-      font-weight: 300;
-      color: rgba(250,250,248,0.6);
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(250,250,248,0.82);
       text-decoration: none;
       line-height: 1.9;
       transition: color 0.2s;
@@ -406,7 +615,8 @@
 
     .contacto-col a:hover { color: var(--blanco); }
 
-    .btn-acceso {
+    .btn-acceso,
+    .contacto-col a.btn-acceso {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -416,13 +626,19 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       text-decoration: none;
-      color: var(--blanco);
-      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--negro);
+      background: var(--blanco);
+      border: 1px solid var(--blanco);
       padding: 8px 12px;
       transition: all 0.2s;
     }
 
-    .btn-acceso:hover { background: var(--blanco); color: var(--negro); border-color: var(--blanco); }
+    .btn-acceso:hover,
+    .contacto-col a.btn-acceso:hover {
+      background: transparent;
+      color: var(--blanco);
+      border-color: var(--blanco);
+    }
 
     .footer-bottom {
       max-width: 1280px;
@@ -435,28 +651,58 @@
 
     .footer-legal {
       font-size: 12px;
-      color: rgba(250,250,248,0.35);
+      color: rgba(250,250,248,0.5);
       line-height: 1.6;
     }
 
     .footer-copy {
       font-size: 12px;
-      color: rgba(250,250,248,0.35);
+      color: rgba(250,250,248,0.5);
     }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .lp-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 32px 24px; }
+    }
+
     @media (max-width: 768px) {
-      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-inner { padding: 0 24px; }
+      .linea-productos { padding: 64px 24px; }
       .linea-hero { grid-template-columns: 1fr; }
       .linea-imagen { min-height: 300px; }
       .linea-info { padding: 48px 24px; }
-      .caract-grid { grid-template-columns: 1fr; }
-      .otras-grid { grid-template-columns: 1fr 1fr; }
-      .linea-caracteristicas,
-      .otras-lineas { padding: 60px 24px; }
       footer#contacto { padding: 56px 24px 32px; }
       .contacto-grid { grid-template-columns: 1fr; gap: 40px; padding-bottom: 40px; }
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; padding-top: 24px; }
+    }
+
+    /* ── WIDGET WHATSAPP ── */
+    .wa-widget {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 900; /* debajo del age-gate (1000) */
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .wa-widget:hover {
+      transform: scale(1.07);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+    }
+
+    @media (max-width: 768px) {
+      .wa-widget { right: 16px; bottom: 16px; width: 52px; height: 52px; }
     }
   </style>
   <link rel="stylesheet" href="navbar.css">
@@ -464,24 +710,76 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav>
-    <a href="index.html" class="nav-logo"><img src="images/logo.png" alt="Dellepiane Spirits" style="height: 36px; width: auto;"></a>
-    <a href="index.html#productos" class="nav-back"><span data-es>Todas las líneas</span><span data-en>All lines</span></a>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <a href="#" class="lang-btn active" data-lang="es">ES</a>
-        <span>/</span>
-        <a href="#" class="lang-btn" data-lang="en">EN</a>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="Dellepiane Spirits">
+      </a>
+      <ul class="nav-links">
+        <li><a href="nosotros.html"><span data-es>Nosotros</span><span data-en>About us</span></a></li>
+        <li class="nav-drop">
+          <a href="index.html#productos"><span data-es>Productos</span><span data-en>Products</span></a>
+          <div class="nav-drop-panel">
+            <a href="tres-plumas.html">Tres Plumas</a>
+            <a href="clasicos-argentinos.html"><span data-es>Clásicos Argentinos</span><span data-en>Argentine Classics</span></a>
+            <a href="https://www.tamboliqueur.com.ar" target="_blank" rel="noopener">Tambo</a>
+            <a href="golden-age.html">Golden Age</a>
+            <a href="premium-spirits.html">Premium Spirits</a>
+            <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
+            <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
+            <div class="nav-drop-divider"></div>
+            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalogue</span></a>
+          </div>
+        </li>
+        <li><a href="index.html#exportacion"><span data-es>Exportación</span><span data-en>Export</span></a></li>
+        <li><a href="index.html#contacto"><span data-es>Contacto</span><span data-en>Contact</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <a href="#" class="lang-btn active" data-lang="es">ES</a>
+          <span>/</span>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+        </div>
+        <a href="https://www.dellepianespirits.com/store/" target="_blank" class="btn-tienda"><span data-es>Tienda</span><span data-en>Shop</span></a>
+        <button class="nav-burger" id="navBurger" aria-label="Menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <a href="https://www.dellepianespirits.com/store/" target="_blank" class="btn-tienda-nav"><span data-es>Tienda</span><span data-en>Shop</span></a>
     </div>
   </nav>
+
+  <!-- MENÚ MOBILE -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="nosotros.html" class="nav-mobile-link"><span data-es>Nosotros</span><span data-en>About us</span></a>
+    <button class="nav-mobile-toggle" id="navMobileProductos"><span data-es>Productos</span><span data-en>Products</span></button>
+    <div class="nav-mobile-sub" id="navMobileSub">
+      <a href="tres-plumas.html">Tres Plumas</a>
+      <a href="clasicos-argentinos.html"><span data-es>Clásicos Argentinos</span><span data-en>Argentine Classics</span></a>
+      <a href="https://www.tamboliqueur.com.ar" target="_blank" rel="noopener">Tambo</a>
+      <a href="golden-age.html">Golden Age</a>
+      <a href="premium-spirits.html">Premium Spirits</a>
+      <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
+      <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
+      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalogue ↓</span></a>
+    </div>
+    <a href="index.html#exportacion" class="nav-mobile-link"><span data-es>Exportación</span><span data-en>Export</span></a>
+    <a href="index.html#contacto" class="nav-mobile-link"><span data-es>Contacto</span><span data-en>Contact</span></a>
+  </div>
+
 
   <!-- HERO -->
   <div class="linea-hero">
 
     <div class="linea-imagen">
-      <img src="images/categoria-golden-age.webp" alt="Golden Age — Dellepiane">
+      <!-- Reemplazar por las 3 fotos del slider: images/hero-golden-age-1/2/3.jpg (mín. 1200×1400px) -->
+      <div class="li-slide active" style="background-image:url('images/hero-golden-age-1.jpg')"></div>
+      <div class="li-slide" style="background-image:url('images/hero-golden-age-2.jpg')"></div>
+      <div class="li-slide" style="background-image:url('images/hero-golden-age-3.jpg')"></div>
+      <div class="li-dots">
+        <button class="li-dot active" aria-label="Foto 1"></button>
+        <button class="li-dot" aria-label="Foto 2"></button>
+        <button class="li-dot" aria-label="Foto 3"></button>
+      </div>
     </div>
 
     <div class="linea-info">
@@ -508,57 +806,42 @@
     </div>
   </div>
 
-  <!-- CARACTERISTICAS -->
-  <div class="linea-caracteristicas">
-    <div class="section-label"><span data-es>La línea</span><span data-en>The line</span></div>
-    <div class="caract-grid">
-      <div class="caract-item">
-        <div class="caract-num">+125</div>
-        <div class="caract-label"><span data-es>Años de historia</span><span data-en>Years of history</span></div>
-        <div class="caract-desc"><span data-es>Una línea con raíces profundas en la tradición licorera argentina.</span><span data-en>A line with deep roots in Argentine liqueur-making tradition.</span></div>
-      </div>
-      <div class="caract-item">
-        <div class="caract-num">100%</div>
-        <div class="caract-label"><span data-es>Producción nacional</span><span data-en>National production</span></div>
-        <div class="caract-desc"><span data-es>Elaborada íntegramente en Argentina con materias primas seleccionadas.</span><span data-en>Crafted entirely in Argentina with selected raw materials.</span></div>
-      </div>
-      <div class="caract-item">
-        <div class="caract-num">AR</div>
-        <div class="caract-label"><span data-es>Identidad propia</span><span data-en>Own identity</span></div>
-        <div class="caract-desc"><span data-es>Sabores únicos que reflejan el carácter y la identidad argentina.</span><span data-en>Unique flavours that reflect Argentine character and identity.</span></div>
+  <!-- PRODUCTOS DE LA LÍNEA -->
+  <section class="linea-productos">
+    <div class="lp-inner">
+      <div class="lp-label"><span data-es>La línea</span><span data-en>The line</span></div>
+      <h2 class="lp-titulo"><span data-es>Todos los productos.</span><span data-en>All the products.</span></h2>
+
+      <div class="lp-grid" style="--cols:3">
+        <!-- href → reemplazar por la ficha de cada producto en la tienda cuando estén las URLs -->
+        <a href="https://www.dellepianespirits.com/store/product-tag/golden-age/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-apricot-brandy.jpg" alt="Apricot Brandy"></div>
+          <div class="lp-nombre"><span>Apricot Brandy</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-tag/golden-age/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-maraschino.jpg" alt="Maraschino"></div>
+          <div class="lp-nombre"><span>Maraschino</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-tag/golden-age/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-cherry-brandy.jpg" alt="Cherry Brandy"></div>
+          <div class="lp-nombre"><span>Cherry Brandy</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-tag/golden-age/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-orange-curacao.jpg" alt="Orange Curaçao"></div>
+          <div class="lp-nombre"><span>Orange Curaçao</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-tag/golden-age/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-elderflower.jpg" alt="Elderflower"></div>
+          <div class="lp-nombre"><span>Elderflower</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-tag/golden-age/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-parfait-amour.jpg" alt="Parfait Amour"></div>
+          <div class="lp-nombre"><span>Parfait Amour</span></div>
+        </a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- OTRAS LÍNEAS -->
-  <div class="otras-lineas">
-    <div class="section-label"><span data-es>Otras líneas</span><span data-en>Other lines</span></div>
-    <div class="otras-grid">
-      <a href="tres-plumas.html" class="otra-item">
-        <span class="otra-nombre">Tres Plumas</span>
-        <span class="otra-arrow">→</span>
-      </a>
-      <a href="https://www.tamboliqueur.com.ar" target="_blank" class="otra-item">
-        <span class="otra-nombre">Tambo</span>
-        <span class="otra-arrow">↗</span>
-      </a>
-      <a href="importados.html" class="otra-item">
-        <span class="otra-nombre">Importados</span>
-        <span class="otra-arrow">→</span>
-      </a>
-      <a href="espirituosas.html" class="otra-item">
-        <span class="otra-nombre">Espirituosas</span>
-        <span class="otra-arrow">→</span>
-      </a>
-      <a href="sin-alcohol.html" class="otra-item">
-        <span class="otra-nombre">Sin Alcohol</span>
-        <span class="otra-arrow">→</span>
-      </a>
-      <div class="otra-item otra-item--empty" aria-hidden="true"></div>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
   <footer id="contacto">
     <div class="contacto-grid">
       <div>
@@ -568,6 +851,8 @@
       <div class="contacto-col">
         <h4><span data-es>Contacto</span><span data-en>Contact</span></h4>
         <a href="tel:+541147895100">(+54 11) 4789-5100</a>
+        <!-- Completar número de WhatsApp: reemplazar XXXXXXXXXX en el href (formato wa.me: 549 + área + número, sin +, espacios ni guiones) -->
+        <a href="https://wa.me/XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
         <a href="mailto:contacto@dellepiane.com.ar">contacto@dellepiane.com.ar</a>
         <a href="mailto:comex@dellepiane.com.ar">comex@dellepiane.com.ar</a>
       </div>
@@ -575,7 +860,7 @@
         <h4><span data-es>Redes</span><span data-en>Social</span></h4>
         <a href="https://www.instagram.com/dellepianespirits" target="_blank">Instagram</a>
         <a href="https://www.facebook.com/dellepianespirits" target="_blank">Facebook</a>
-        <a href="https://www.youtube.com/user/dellepianesanluis" target="_blank">YouTube</a>
+        <a href="https://ar.linkedin.com/company/dellepianespirits" target="_blank">LinkedIn</a>
       </div>
       <div class="contacto-col">
         <h4><span data-es>Acceso</span><span data-en>Access</span></h4>
@@ -613,6 +898,55 @@
 
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === 'en') setLang('en');
+    })();
+
+    /* ── Slider del hero (3 fotos) ── */
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.li-slide'));
+      const dots   = Array.from(document.querySelectorAll('.li-dot'));
+      if (!slides.length) return;
+      let active = 0, timer = null;
+      function show(i){ slides[active].classList.remove('active'); dots[active]&&dots[active].classList.remove('active'); active=i; slides[active].classList.add('active'); dots[active]&&dots[active].classList.add('active'); }
+      function next(){ show((active+1)%slides.length); }
+      function start(){ clearInterval(timer); timer=setInterval(next,5000); }
+      dots.forEach((d,i)=>d.addEventListener('click',()=>{show(i);start();}));
+      start();
+    })();
+
+    /* ── Menú mobile (hamburguesa + acordeón Productos) ── */
+    (function () {
+      const burger = document.getElementById('navBurger');
+      const menu   = document.getElementById('navMobile');
+      const toggle = document.getElementById('navMobileProductos');
+      const sub    = document.getElementById('navMobileSub');
+      if (!burger || !menu) return;
+
+      function closeMenu() {
+        document.body.classList.remove('nav-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+
+      burger.addEventListener('click', function () {
+        const open = document.body.classList.toggle('nav-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      if (toggle && sub) {
+        toggle.addEventListener('click', function () {
+          sub.classList.toggle('open');
+          toggle.classList.toggle('open');
+        });
+      }
+
+      // Cerrar el menú al elegir cualquier link
+      menu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', closeMenu);
+      });
+
+      // Cerrar si se agranda la ventana a desktop
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) closeMenu();
+      });
     })();
   </script>
 
@@ -693,6 +1027,17 @@
       observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
     })();
   </script>
+
+
+  <!-- WIDGET WHATSAPP FLOTANTE
+       Completar número: reemplazar XXXXXXXXXX (formato wa.me: 549 + área + número,
+       sin +, espacios ni guiones). Es el mismo número pendiente del footer. -->
+  <a href="https://wa.me/XXXXXXXXXX?text=Hola!%20Quiero%20hacer%20una%20consulta%20sobre%20productos%20Dellepiane."
+     target="_blank" rel="noopener" class="wa-widget" aria-label="Escribinos por WhatsApp">
+    <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
+      <path d="M16.04 3C9.16 3 3.57 8.59 3.57 15.47c0 2.2.58 4.35 1.68 6.25L3.5 28.5l6.94-1.82a12.4 12.4 0 0 0 5.6 1.35h.01c6.88 0 12.47-5.59 12.47-12.47C28.52 8.59 22.92 3 16.04 3zm0 22.72h-.01a10.3 10.3 0 0 1-5.25-1.44l-.38-.22-3.9 1.02 1.04-3.8-.25-.39a10.26 10.26 0 0 1-1.58-5.42c0-5.68 4.63-10.31 10.33-10.31 2.76 0 5.35 1.08 7.3 3.03a10.25 10.25 0 0 1 3.02 7.3c0 5.69-4.63 10.23-10.32 10.23zm5.66-7.72c-.31-.16-1.84-.9-2.12-1-.28-.11-.49-.16-.7.15-.2.31-.79 1-.97 1.21-.18.2-.36.23-.67.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.55-1.84-1.73-2.15-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.54.15-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.7-1.69-.96-2.31-.25-.61-.51-.53-.7-.54h-.6c-.2 0-.54.08-.82.39-.28.31-1.08 1.06-1.08 2.58 0 1.52 1.1 2.99 1.26 3.2.15.2 2.17 3.32 5.26 4.65.74.32 1.31.51 1.76.65.74.24 1.41.2 1.94.12.59-.09 1.84-.75 2.1-1.48.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.36z"/>
+    </svg>
+  </a>
 
 </body>
 </html>

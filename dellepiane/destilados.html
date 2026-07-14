@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sin Alcohol — Dellepiane Spirits</title>
+  <title>Destilados — Dellepiane Spirits</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -327,52 +327,37 @@
       height: 100%;
     }
 
-    .linea-imagen {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-    }
-
-    .li-cell {
-      position: relative;
-      display: block;
-      overflow: hidden;
-      text-decoration: none;
-      background: var(--gris-claro);
-    }
-
-    .li-cell img {
+    .li-slide {
       position: absolute;
       inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.1s ease;
     }
 
-    .li-cell:hover img { transform: scale(1.05); }
+    .li-slide.active { opacity: 1; }
 
-    .li-cell::after {
-      content: '';
+    .li-dots {
       position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 55%;
-      background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0));
-      pointer-events: none;
+      bottom: 20px;
+      left: 24px;
+      display: flex;
+      gap: 8px;
+      z-index: 2;
     }
 
-    .li-cell-label {
-      position: absolute;
-      left: 18px;
-      bottom: 14px;
-      z-index: 1;
-      font-family: var(--serif);
-      font-size: 19px;
-      font-weight: 400;
-      color: var(--blanco);
-      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    .li-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(250,250,248,0.45);
+      border: none; padding: 0;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
     }
+
+    .li-dot.active { background: var(--blanco); transform: scale(1.6); }
+
 
     /* Placeholder cuando no hay imagen */
     .img-placeholder {
@@ -473,6 +458,108 @@
 
     .btn-conseguilos:hover { opacity: 0.85; }
     .btn-conseguilos::after { content: '→'; font-size: 16px; }
+
+    /* ── PRODUCTOS DE LA LÍNEA (catálogo editorial) ── */
+    .linea-productos {
+      background: var(--blanco);
+      border-top: 1px solid var(--borde);
+      padding: 96px 48px;
+    }
+
+    .lp-inner { max-width: 1180px; margin: 0 auto; }
+
+    .lp-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lp-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+
+    .lp-titulo {
+      font-family: var(--serif);
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 56px;
+    }
+
+    .lp-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--cols, 3), 1fr);
+      gap: 36px 28px;
+    }
+
+    .lp-item {
+      display: block;
+      text-decoration: none;
+      color: var(--negro);
+    }
+
+    .lp-foto {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--gris-claro);
+      margin-bottom: 16px;
+    }
+
+    .lp-foto img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .lp-item:hover .lp-foto img { transform: scale(1.04); }
+
+    .lp-marca-logo {
+      height: 26px;
+      width: auto;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .lp-nombre {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.3;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .lp-nombre::after {
+      content: '↗';
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateY(2px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .lp-item:hover .lp-nombre::after { opacity: 1; transform: translateY(0); }
+
+    .lp-desc {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--gris);
+      line-height: 1.6;
+      margin-top: 4px;
+    }
 
     /* ── FOOTER ── */
     footer#contacto {
@@ -575,12 +662,14 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
+      .lp-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 32px 24px; }
     }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .nav-burger { display: flex; }
       .nav-inner { padding: 0 24px; }
+      .linea-productos { padding: 64px 24px; }
       .linea-hero { grid-template-columns: 1fr; }
       .linea-imagen { min-height: 300px; }
       .linea-info { padding: 48px 24px; }
@@ -682,15 +771,15 @@
   <div class="linea-hero">
 
     <div class="linea-imagen">
-      <!-- href → reemplazar por la ficha de cada producto cuando estén las URLs -->
-      <a href="https://www.dellepianespirits.com/store/product-category/sin-alcohol/" target="_blank" class="li-cell">
-        <img src="images/producto-granadina.jpg" alt="Granadina Dellepiane">
-        <span class="li-cell-label"><span data-es>Granadina Dellepiane</span><span data-en>Dellepiane Grenadine</span></span>
-      </a>
-      <a href="https://www.dellepianespirits.com/store/product-category/sin-alcohol/" target="_blank" class="li-cell">
-        <img src="images/producto-bark-tonica.jpg" alt="Bark Tónica">
-        <span class="li-cell-label"><span data-es>Tónica Bark</span><span data-en>Bark Tonic</span></span>
-      </a>
+      <!-- Reemplazar por las 3 fotos del slider: images/hero-destilados-1/2/3.jpg (mín. 1200×1400px) -->
+      <div class="li-slide active" style="background-image:url('images/hero-destilados-1.jpg')"></div>
+      <div class="li-slide" style="background-image:url('images/hero-destilados-2.jpg')"></div>
+      <div class="li-slide" style="background-image:url('images/hero-destilados-3.jpg')"></div>
+      <div class="li-dots">
+        <button class="li-dot active" aria-label="Foto 1"></button>
+        <button class="li-dot" aria-label="Foto 2"></button>
+        <button class="li-dot" aria-label="Foto 3"></button>
+      </div>
     </div>
 
     <div class="linea-info">
@@ -699,24 +788,55 @@
         <span>/</span>
         <a href="index.html#productos"><span data-es>Productos</span><span data-en>Products</span></a>
         <span>/</span>
-        Sin Alcohol
+        Destilados
       </div>
 
-      <h1 class="linea-nombre">Sin Alcohol</h1>
-      <p class="linea-subtitulo"><span data-es>Todo el sabor, sin el alcohol.</span><span data-en>All the flavour, none of the alcohol.</span></p>
+      <h1 class="linea-nombre">Destilados</h1>
+      <p class="linea-subtitulo"><span data-es>Un siglo de destilación artesanal.</span><span data-en>A century of artisanal distillation.</span></p>
 
       <div class="linea-descripcion">
-        <p><span data-es>Nuestra línea sin alcohol está pensada para quienes quieren disfrutar de una experiencia premium sin el contenido alcohólico. Bebidas elaboradas con los mismos estándares de calidad que caracterizan a Dellepiane.</span><span data-en>Our non-alcoholic line is designed for those who want to enjoy a premium experience without the alcohol. Beverages crafted to the same quality standards that define Dellepiane.</span></p>
-        <p><span data-es>Sabores auténticos, ingredientes seleccionados y una propuesta perfecta para cualquier ocasión y cualquier persona.</span><span data-en>Authentic flavours, selected ingredients and a perfect proposition for any occasion and any person.</span></p>
+        <p><span data-es>Nuestra línea de destilados es el resultado de más de 125 años de experiencia en destilación. Cada producto combina técnicas tradicionales con tecnología de producción moderna para lograr perfiles de sabor únicos.</span><span data-en>Our spirits line is the result of over 125 years of distillation expertise. Each product combines traditional techniques with modern production technology to achieve unique flavour profiles.</span></p>
+        <p><span data-es>Ginebras, whiskies, vodkas y más — todos con el respaldo de una licorera argentina de trayectoria internacional.</span><span data-en>Gins, whiskies, vodkas and more — all backed by an Argentine spirits house with an international track record.</span></p>
       </div>
 
-      <a href="https://www.dellepianespirits.com/store/product-category/sin-alcohol/" target="_blank" class="btn-conseguilos">
+      <a href="https://www.dellepianespirits.com/store/product-category/destilados/" target="_blank" class="btn-conseguilos">
         Conseguilos en nuestra tienda
       </a>
 
     </div>
   </div>
 
+  <!-- PRODUCTOS DE LA LÍNEA -->
+  <section class="linea-productos">
+    <div class="lp-inner">
+      <div class="lp-label"><span data-es>La línea</span><span data-en>The line</span></div>
+      <h2 class="lp-titulo"><span data-es>Todos los productos.</span><span data-en>All the products.</span></h2>
+
+      <div class="lp-grid" style="--cols:5">
+        <!-- href → reemplazar por la ficha de cada producto en la tienda cuando estén las URLs -->
+        <a href="https://www.dellepianespirits.com/store/product-category/destilados/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-gin-burnetts.jpg" alt="Gin Burnett's"></div>
+          <div class="lp-nombre"><span>Gin Burnett's</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-category/destilados/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-grappa-valleviejo.jpg" alt="Grappa Valleviejo"></div>
+          <div class="lp-nombre"><span>Grappa Valleviejo</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-category/destilados/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-anis-shami.jpg" alt="Anís Shami"></div>
+          <div class="lp-nombre"><span>Anís Shami</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-category/destilados/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-tequila-conquistador.jpg" alt="Tequila Conquistador"></div>
+          <div class="lp-nombre"><span>Tequila Conquistador</span></div>
+        </a>
+        <a href="https://www.dellepianespirits.com/store/product-category/destilados/" target="_blank" class="lp-item">
+          <div class="lp-foto"><img src="images/producto-vodka-tailov.jpg" alt="Vodka Tailov"></div>
+          <div class="lp-nombre"><span>Vodka Tailov</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <footer id="contacto">
     <div class="contacto-grid">
@@ -774,6 +894,19 @@
 
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === 'en') setLang('en');
+    })();
+
+    /* ── Slider del hero (3 fotos) ── */
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.li-slide'));
+      const dots   = Array.from(document.querySelectorAll('.li-dot'));
+      if (!slides.length) return;
+      let active = 0, timer = null;
+      function show(i){ slides[active].classList.remove('active'); dots[active]&&dots[active].classList.remove('active'); active=i; slides[active].classList.add('active'); dots[active]&&dots[active].classList.add('active'); }
+      function next(){ show((active+1)%slides.length); }
+      function start(){ clearInterval(timer); timer=setInterval(next,5000); }
+      dots.forEach((d,i)=>d.addEventListener('click',()=>{show(i);start();}));
+      start();
     })();
 
     /* ── Menú mobile (hamburguesa + acordeón Productos) ── */
