@@ -815,34 +815,34 @@
 
       <div class="lp-grid" style="--cols:4">
         <!-- href → reemplazar por la ficha de cada producto en la tienda cuando estén las URLs -->
-        <a href="https://www.dellepianespirits.com/store/" target="_blank" class="lp-item">
+        <a href="https://www.dellepianespirits.com/store/product-tag/american-club/" target="_blank" class="lp-item">
           <div class="lp-foto"><img src="images/producto-american-club.jpg" alt="American Club"></div>
           <!-- Si preferís el logo de la marca en vez del nombre en texto:
                <img class="lp-marca-logo" src="images/logo-american-club.png" alt="American Club"> -->
           <div class="lp-nombre"><span>American Club</span></div>
           <p class="lp-desc">Piña colada · Frutilla colada</p>
         </a>
-        <a href="https://www.dellepianespirits.com/store/" target="_blank" class="lp-item">
+        <a href="https://www.dellepianespirits.com/store/productos/anis-8-hermanos/" target="_blank" class="lp-item">
           <div class="lp-foto"><img src="images/producto-anis-8-hermanos.jpg" alt="Anís 8 Hermanos"></div>
           <div class="lp-nombre"><span>Anís 8 Hermanos</span></div>
         </a>
-        <a href="https://www.dellepianespirits.com/store/" target="_blank" class="lp-item">
+        <a href="https://www.dellepianespirits.com/store/productos/mariposa/" target="_blank" class="lp-item">
           <div class="lp-foto"><img src="images/producto-mariposa.jpg" alt="Mariposa"></div>
           <div class="lp-nombre"><span>Mariposa</span></div>
         </a>
-        <a href="https://www.dellepianespirits.com/store/" target="_blank" class="lp-item">
+        <a href="https://www.dellepianespirits.com/store/productos/legui-licor-fino/" target="_blank" class="lp-item">
           <div class="lp-foto"><img src="images/producto-legui.jpg" alt="Legui"></div>
           <div class="lp-nombre"><span>Legui</span></div>
         </a>
-        <a href="https://www.dellepianespirits.com/store/" target="_blank" class="lp-item">
+        <a href="https://www.dellepianespirits.com/store/productos/licor-cana/" target="_blank" class="lp-item">
           <div class="lp-foto"><img src="images/producto-cana-ombu.jpg" alt="Caña Ombú"></div>
           <div class="lp-nombre"><span>Caña Ombú</span></div>
         </a>
-        <a href="https://www.dellepianespirits.com/store/" target="_blank" class="lp-item">
+        <a href="https://www.dellepianespirits.com/store/productos/cana-durazno/" target="_blank" class="lp-item">
           <div class="lp-foto"><img src="images/producto-cana-durazno.jpg" alt="Caña Durazno"></div>
           <div class="lp-nombre"><span>Caña Durazno</span></div>
         </a>
-        <a href="https://www.dellepianespirits.com/store/" target="_blank" class="lp-item">
+        <a href="https://www.dellepianespirits.com/store/productos/cana-1o-de-agosto/" target="_blank" class="lp-item">
           <div class="lp-foto"><img src="images/producto-cana-1-agosto.jpg" alt="Caña 1° de Agosto"></div>
           <div class="lp-nombre"><span>Caña 1° de Agosto</span></div>
         </a>
@@ -859,8 +859,7 @@
       <div class="contacto-col">
         <h4><span data-es>Contacto</span><span data-en>Contact</span></h4>
         <a href="tel:+541147895100">(+54 11) 4789-5100</a>
-        <!-- Completar número de WhatsApp: reemplazar XXXXXXXXXX en el href (formato wa.me: 549 + área + número, sin +, espacios ni guiones) -->
-        <a href="https://wa.me/XXXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://wa.me/5491176104921" target="_blank" rel="noopener">WhatsApp</a>
         <a href="mailto:contacto@dellepiane.com.ar">contacto@dellepiane.com.ar</a>
         <a href="mailto:comex@dellepiane.com.ar">comex@dellepiane.com.ar</a>
       </div>
@@ -1009,6 +1008,8 @@
 
   <script>
     (function () {
+      /* Para desactivar temporalmente el aviso de edad, cambiar a false */
+      var AGE_GATE_ENABLED = true;
       var gate = document.getElementById('age-gate');
       var btnYes = document.getElementById('ag-yes');
       var btnNo  = document.getElementById('ag-no');
@@ -1017,6 +1018,8 @@
         gate.querySelectorAll('[data-es]').forEach(function(el){ el.style.display = isEn ? 'none' : ''; });
         gate.querySelectorAll('[data-en]').forEach(function(el){ el.style.display = isEn ? '' : 'none'; });
       }
+      if (!AGE_GATE_ENABLED) return;
+
       if (!sessionStorage.getItem('age-verified')) {
         gate.classList.add('visible');
         document.body.style.overflow = 'hidden';
@@ -1035,12 +1038,8 @@
       observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
     })();
   </script>
-
-
-  <!-- WIDGET WHATSAPP FLOTANTE
-       Completar número: reemplazar XXXXXXXXXX (formato wa.me: 549 + área + número,
-       sin +, espacios ni guiones). Es el mismo número pendiente del footer. -->
-  <a href="https://wa.me/XXXXXXXXXX?text=Hola!%20Quiero%20hacer%20una%20consulta%20sobre%20productos%20Dellepiane."
+  <!-- WIDGET WHATSAPP FLOTANTE -->
+  <a href="https://wa.me/5491176104921?text=Hola!%20Quiero%20hacer%20una%20consulta%20sobre%20productos%20Dellepiane."
      target="_blank" rel="noopener" class="wa-widget" aria-label="Escribinos por WhatsApp">
     <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
       <path d="M16.04 3C9.16 3 3.57 8.59 3.57 15.47c0 2.2.58 4.35 1.68 6.25L3.5 28.5l6.94-1.82a12.4 12.4 0 0 0 5.6 1.35h.01c6.88 0 12.47-5.59 12.47-12.47C28.52 8.59 22.92 3 16.04 3zm0 22.72h-.01a10.3 10.3 0 0 1-5.25-1.44l-.38-.22-3.9 1.02 1.04-3.8-.25-.39a10.26 10.26 0 0 1-1.58-5.42c0-5.68 4.63-10.31 10.33-10.31 2.76 0 5.35 1.08 7.3 3.03a10.25 10.25 0 0 1 3.02 7.3c0 5.69-4.63 10.23-10.32 10.23zm5.66-7.72c-.31-.16-1.84-.9-2.12-1-.28-.11-.49-.16-.7.15-.2.31-.79 1-.97 1.21-.18.2-.36.23-.67.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.55-1.84-1.73-2.15-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.54.15-.18.2-.31.31-.52.1-.2.05-.39-.03-.54-.08-.16-.7-1.69-.96-2.31-.25-.61-.51-.53-.7-.54h-.6c-.2 0-.54.08-.82.39-.28.31-1.08 1.06-1.08 2.58 0 1.52 1.1 2.99 1.26 3.2.15.2 2.17 3.32 5.26 4.65.74.32 1.31.51 1.76.65.74.24 1.41.2 1.94.12.59-.09 1.84-.75 2.1-1.48.26-.72.26-1.34.18-1.47-.08-.13-.28-.2-.59-.36z"/>
