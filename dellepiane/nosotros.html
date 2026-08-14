@@ -566,65 +566,6 @@
     }
 
     /* ═══════════════════════════════════════════
-       QUIÉNES SOMOS — equipo, 5 retratos circulares
-       ═══════════════════════════════════════════ */
-    #equipo { background: var(--blanco); border-top: 1px solid var(--borde); }
-
-    .equipo-grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 48px 56px;
-      margin-top: 64px;
-    }
-
-    .equipo-persona {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      width: 160px;
-    }
-
-    .equipo-foto {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      overflow: hidden;
-      background: var(--gris-claro);
-      margin-bottom: 18px;
-    }
-
-    .equipo-foto img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: grayscale(1);
-      transition: filter 0.4s ease;
-    }
-
-    .equipo-persona:hover .equipo-foto img { filter: grayscale(0); }
-
-    .equipo-nombre {
-      font-family: var(--serif);
-      font-size: 19px;
-      font-weight: 500;
-      color: var(--negro);
-      line-height: 1.3;
-      margin-bottom: 4px;
-    }
-
-    .equipo-cargo {
-      font-family: var(--sans);
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gris);
-    }
-
-    /* ═══════════════════════════════════════════
        NUESTRA HISTORIA — timeline horizontal
        ═══════════════════════════════════════════ */
     #historia-h { background: #F3F5FB; border-top: 1px solid var(--borde); overflow: hidden; }
@@ -849,9 +790,6 @@
       section { padding: 72px 24px; }
       .hist-hero-content { padding: 0 24px 40px; }
       .capacidad { grid-template-columns: 1fr; gap: 4px; }
-      .equipo-grid { gap: 36px 32px; }
-      .equipo-persona { width: 132px; }
-      .equipo-foto { width: 120px; height: 120px; }
       .htl-head { flex-direction: column; align-items: flex-start; gap: 20px; }
       .htl-card { width: 260px; }
       .hist-stats-grid { grid-template-columns: 1fr; }
@@ -1027,41 +965,6 @@
       <div class="hist-stat">
         <div class="hist-stat-num">20+</div>
         <div class="hist-stat-label"><span data-es>Países</span><span data-en>Countries</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUIÉNES SOMOS -->
-  <section id="equipo">
-    <div class="section-label"><span data-es>Quiénes somos</span><span data-en>Who we are</span></div>
-    <h2><span data-es>Las personas detrás<br>de cada botella.</span><span data-en>The people behind<br>every bottle.</span></h2>
-
-    <div class="equipo-grid">
-      <!-- Reemplazar nombres, cargos y fotos (images/equipo-1.jpg … equipo-5.jpg, cuadradas, mín. 600×600px) -->
-      <div class="equipo-persona">
-        <div class="equipo-foto"><img src="images/equipo-1.jpg" alt=""></div>
-        <div class="equipo-nombre">Nombre Apellido</div>
-        <div class="equipo-cargo"><span data-es>Cargo</span><span data-en>Role</span></div>
-      </div>
-      <div class="equipo-persona">
-        <div class="equipo-foto"><img src="images/equipo-2.jpg" alt=""></div>
-        <div class="equipo-nombre">Nombre Apellido</div>
-        <div class="equipo-cargo"><span data-es>Cargo</span><span data-en>Role</span></div>
-      </div>
-      <div class="equipo-persona">
-        <div class="equipo-foto"><img src="images/equipo-3.jpg" alt=""></div>
-        <div class="equipo-nombre">Nombre Apellido</div>
-        <div class="equipo-cargo"><span data-es>Cargo</span><span data-en>Role</span></div>
-      </div>
-      <div class="equipo-persona">
-        <div class="equipo-foto"><img src="images/equipo-4.jpg" alt=""></div>
-        <div class="equipo-nombre">Nombre Apellido</div>
-        <div class="equipo-cargo"><span data-es>Cargo</span><span data-en>Role</span></div>
-      </div>
-      <div class="equipo-persona">
-        <div class="equipo-foto"><img src="images/equipo-5.jpg" alt=""></div>
-        <div class="equipo-nombre">Nombre Apellido</div>
-        <div class="equipo-cargo"><span data-es>Cargo</span><span data-en>Role</span></div>
       </div>
     </div>
   </section>
