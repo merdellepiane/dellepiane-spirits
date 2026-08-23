@@ -455,7 +455,8 @@
 
     .planta-grid {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: minmax(320px, 400px) minmax(420px, 560px);
+      justify-content: center;
       gap: 64px;
       align-items: center;
     }
@@ -463,9 +464,10 @@
     .planta-media {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 9 / 16;
       overflow: hidden;
       background: var(--gris-claro);
+      box-shadow: 0 16px 40px rgba(14,14,14,0.1);
     }
 
     .planta-media img,
@@ -485,7 +487,7 @@
       font-weight: 300;
       line-height: 1.85;
       color: #444;
-      max-width: 480px;
+      max-width: 560px;
       margin-bottom: 28px;
     }
 
@@ -776,6 +778,7 @@
        ═══════════════════════════════════════════ */
     @media (max-width: 900px) {
       .planta-grid { grid-template-columns: 1fr; gap: 40px; }
+      .planta-media { max-width: 400px; margin: 0 auto; }
       .hist-stats-grid { grid-template-columns: 1fr 1fr; }
       .hist-stat:nth-child(2) { border-left: 1px solid var(--borde); }
       .hist-stat:nth-child(3) { border-left: none; border-top: 1px solid var(--borde); }
@@ -848,7 +851,7 @@
             <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
             <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
             <div class="nav-drop-divider"></div>
-            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalog</span></a>
+            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalogue</span></a>
           </div>
         </li>
         <li><a href="index.html#exportacion"><span data-es>Exportación</span><span data-en>Export</span></a></li>
@@ -880,7 +883,7 @@
       <a href="premium-spirits.html">Premium Spirits</a>
       <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
       <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
-      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalog ↓</span></a>
+      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalogue ↓</span></a>
     </div>
     <a href="index.html#exportacion" class="nav-mobile-link"><span data-es>Exportación</span><span data-en>Export</span></a>
     <a href="index.html#contacto" class="nav-mobile-link"><span data-es>Contacto</span><span data-en>Contact</span></a>
@@ -896,7 +899,7 @@
     <div class="hist-hero-overlay"></div>
     <div class="hist-hero-content">
       <p class="hist-hero-eyebrow"><span data-es>Nosotros</span><span data-en>About us</span></p>
-      <h1><span data-es>Cuatro generaciones,<br>una sola convicción.</span><span data-en>Four generations,<br>one conviction.</span></h1>
+      <h1><span data-es>Industria argentina,<br>tecnología propia.</span><span data-en>Argentine industry,<br>in-house technology.</span></h1>
       <p class="hist-hero-sub"><span data-es>Una planta moderna que produce a escala y diseña su propia maquinaria. Más de 125 años de trayectoria, en presente.</span><span data-en>A modern plant producing at scale and designing its own machinery. Over 125 years of history, in the present tense.</span></p>
     </div>
     <div class="hist-hero-dots">
@@ -910,14 +913,12 @@
   <section id="planta">
     <div class="planta-grid">
       <div class="planta-media">
-        <!-- Cuando haya video de planta, reemplazar la imagen por:
-             <video src="videos/planta.mp4" poster="images/historia-planta-1.jpg" muted loop autoplay playsinline></video> -->
-        <img src="images/historia-planta-1.jpg" alt="Planta Dellepiane">
+        <video src="videos/planta.mp4" poster="videos/planta-poster.jpg" muted loop autoplay playsinline preload="metadata"></video>
       </div>
       <div class="planta-texto">
         <div class="section-label"><span data-es>Planta actual</span><span data-en>Our plant today</span></div>
         <h2><span data-es>Capacidad industrial,<br>cuidado artesanal.</span><span data-en>Industrial capacity,<br>artisanal care.</span></h2>
-        <p><span data-es>Elaboramos cada producto en una planta propia, con un equipo especializado y procesos integrados de destilación, elaboración y envasado. Buena parte de la maquinaria que usamos no la compramos: la diseñamos y la fabricamos nosotros mismos.</span><span data-en>We craft every product in our own plant, with a specialized team and integrated distillation, production and bottling processes. Much of the machinery we use isn't bought — we design and build it ourselves.</span></p>
+        <p><span data-es>Elaboramos cada producto en una planta propia, con un equipo especializado y procesos integrados de destilación, elaboración y envasado. Buena parte de la maquinaria que usamos no la compramos: la diseñamos y la fabricamos nosotros mismos.</span><span data-en>We craft every product in our own plant, with a specialised team and integrated distillation, production and bottling processes. Much of the machinery we use isn't bought — we design and build it ourselves.</span></p>
 
         <div class="planta-capacidades">
           <!-- Al confirmar datos de producción anual, agregar una fila:
