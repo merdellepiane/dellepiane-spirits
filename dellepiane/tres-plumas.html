@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tres Plumas — Dellepiane Spirits</title>
+  <title>Tres Plumas — Dellepiane</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -605,15 +605,17 @@
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-burger { display: flex; }
+      .nav-burger { display: flex; width: 34px; height: 34px; padding: 7px; }
+      .nav-logo img { height: 26px; }
+      .nav-right { gap: 8px; }
+      .lang-toggle { font-size: 10px; gap: 4px; }
+      .btn-tienda, .btn-tienda-nav { padding: 6px 12px; font-size: 10px; letter-spacing: 0.06em; }
       .nav-inner { padding: 0 24px; }
       .tp-hero {
         grid-template-columns: 1fr;
         height: auto;
       }
       .tp-hero__media { min-height: 380px; order: -1; }
-      .tpm-grid { grid-template-columns: 1fr; gap: 32px; }
-      .tpm-foto img { height: 300px; }
       .tp-momentos { padding: 64px 24px; }
       .tp-hero__info { padding: 48px 24px; }
       .tp-hero__actions { width: 100%; }
@@ -814,6 +816,9 @@
 
     @media (max-width: 768px) {
       .wa-widget { right: 16px; bottom: 16px; width: 52px; height: 52px; }
+      .tpm-grid { grid-template-columns: 1fr; gap: 28px; }
+      .tpm-foto img { height: 280px; }
+      .tpm-centro { order: -1; }
     }
   </style>
   <link rel="stylesheet" href="navbar.css">
@@ -839,7 +844,7 @@
             <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
             <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
             <div class="nav-drop-divider"></div>
-            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalog</span></a>
+            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalogue</span></a>
           </div>
         </li>
         <li><a href="index.html#exportacion"><span data-es>Exportación</span><span data-en>Export</span></a></li>
@@ -871,7 +876,7 @@
       <a href="premium-spirits.html">Premium Spirits</a>
       <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
       <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
-      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalog ↓</span></a>
+      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalogue ↓</span></a>
     </div>
     <a href="index.html#exportacion" class="nav-mobile-link"><span data-es>Exportación</span><span data-en>Export</span></a>
     <a href="index.html#contacto" class="nav-mobile-link"><span data-es>Contacto</span><span data-en>Contact</span></a>
@@ -902,7 +907,7 @@
         </a>
         <a href="files/catalogo-dellepiane.pdf" target="_blank" class="tp-cta-secondary tp-cta-secondary--download">
           <span data-es>Descargar catálogo</span>
-          <span data-en>Download catalog</span>
+          <span data-en>Download catalogue</span>
         </a>
       </div>
     </div>
