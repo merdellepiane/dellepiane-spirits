@@ -601,6 +601,18 @@
     .htl-arrow:hover { background: var(--azul); border-color: var(--azul); color: var(--blanco); }
     .htl-arrow[disabled] { opacity: 0.3; pointer-events: none; }
 
+    .htl-viewport { position: relative; padding: 0 60px; }
+
+    /* Flechas a los costados, en el margen libre (fuera de las imágenes), centradas a la altura de la imagen */
+    .htl-arrow-prev, .htl-arrow-next {
+      position: absolute;
+      top: 116px;
+      transform: translateY(-50%);
+      z-index: 3;
+    }
+    .htl-arrow-prev { left: 6px; }
+    .htl-arrow-next { right: 6px; }
+
     .htl-track {
       display: flex;
       gap: 24px;
@@ -800,6 +812,10 @@
       .capacidad { grid-template-columns: 1fr; gap: 4px; }
       .htl-head { flex-direction: column; align-items: flex-start; gap: 20px; }
       .htl-card { width: 260px; }
+      .htl-viewport { padding: 0 44px; }
+      .htl-arrow-prev, .htl-arrow-next { top: 101px; width: 36px; height: 36px; }
+      .htl-arrow-prev { left: 2px; }
+      .htl-arrow-next { right: 2px; }
       .hist-stats-grid { grid-template-columns: 1fr; }
       .hist-stat { border-left: none !important; border-top: 1px solid var(--borde); }
       .hist-stat:first-child { border-top: none; }
@@ -856,7 +872,7 @@
             <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
             <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
             <div class="nav-drop-divider"></div>
-            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalogue</span></a>
+            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalog</span></a>
           </div>
         </li>
         <li><a href="index.html#exportacion"><span data-es>Exportación</span><span data-en>Export</span></a></li>
@@ -888,7 +904,7 @@
       <a href="premium-spirits.html">Premium Spirits</a>
       <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
       <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
-      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalogue ↓</span></a>
+      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalog ↓</span></a>
     </div>
     <a href="index.html#exportacion" class="nav-mobile-link"><span data-es>Exportación</span><span data-en>Export</span></a>
     <a href="index.html#contacto" class="nav-mobile-link"><span data-es>Contacto</span><span data-en>Contact</span></a>
@@ -904,7 +920,7 @@
     <div class="hist-hero-overlay"></div>
     <div class="hist-hero-content">
       <p class="hist-hero-eyebrow"><span data-es>Nosotros</span><span data-en>About us</span></p>
-      <h1><span data-es>Industria argentina,<br>tecnología propia.</span><span data-en>Argentine industry,<br>in-house technology.</span></h1>
+      <h1><span data-es>Cuatro generaciones,<br>una sola convicción.</span><span data-en>Four generations,<br>one conviction.</span></h1>
       <p class="hist-hero-sub"><span data-es>Una planta moderna que produce a escala y diseña su propia maquinaria. Más de 125 años de trayectoria, en presente.</span><span data-en>A modern plant producing at scale and designing its own machinery. Over 125 years of history, in the present tense.</span></p>
     </div>
     <div class="hist-hero-dots">
@@ -923,7 +939,7 @@
       <div class="planta-texto">
         <div class="section-label"><span data-es>Planta actual</span><span data-en>Our plant today</span></div>
         <h2><span data-es>Capacidad industrial,<br>cuidado artesanal.</span><span data-en>Industrial capacity,<br>artisanal care.</span></h2>
-        <p><span data-es>Elaboramos cada producto en una planta propia, con un equipo especializado y procesos integrados de destilación, elaboración y envasado. Buena parte de la maquinaria que usamos no la compramos: la diseñamos y la fabricamos nosotros mismos.</span><span data-en>We craft every product in our own plant, with a specialised team and integrated distillation, production and bottling processes. Much of the machinery we use isn't bought — we design and build it ourselves.</span></p>
+        <p><span data-es>Elaboramos cada producto en una planta propia, con un equipo especializado y procesos integrados de destilación, elaboración y envasado. Buena parte de la maquinaria que usamos no la compramos: la diseñamos y la fabricamos nosotros mismos.</span><span data-en>We craft every product in our own plant, with a specialized team and integrated distillation, production and bottling processes. Much of the machinery we use isn't bought — we design and build it ourselves.</span></p>
 
         <div class="planta-capacidades">
           <!-- Al confirmar datos de producción anual, agregar una fila:
@@ -982,48 +998,97 @@
         <div class="section-label"><span data-es>Nuestra historia</span><span data-en>Our history</span></div>
         <h2><span data-es>125 años en movimiento.</span><span data-en>125 years in motion.</span></h2>
       </div>
-      <div class="htl-arrows">
-        <button class="htl-arrow" id="htlPrev" aria-label="Anterior" disabled>←</button>
-        <button class="htl-arrow" id="htlNext" aria-label="Siguiente">→</button>
-      </div>
     </div>
 
-    <div class="htl-track" id="htlTrack">
+    <div class="htl-viewport">
+      <button class="htl-arrow htl-arrow-prev" id="htlPrev" aria-label="Anterior" disabled>←</button>
+      <button class="htl-arrow htl-arrow-next" id="htlNext" aria-label="Siguiente">→</button>
+      <div class="htl-track" id="htlTrack">
       <article class="htl-card">
         <div class="htl-img" style="background-image:url('images/historia-evo-1898.jpg')"></div>
         <div class="htl-body">
           <div class="htl-year">1898</div>
-          <p class="htl-text"><span data-es>La familia Dellepiane funda en Buenos Aires una destilería con una convicción simple: calidad sin concesiones.</span><span data-en>The Dellepiane family founds a distillery in Buenos Aires with one simple conviction: quality without compromise.</span></p>
+          <p class="htl-text"><span data-es>Dos ingleses fundan «Mackinnon &amp; Croll» en Buenos Aires para importar whisky escocés, gin y tés de Ceilán. Es el origen de la casa.</span><span data-en>Two Englishmen found "Mackinnon &amp; Croll" in Buenos Aires to import Scotch whisky, gin and Ceylon teas — the origin of the house.</span></p>
         </div>
       </article>
       <article class="htl-card">
-        <div class="htl-img" style="background-image:url('images/historia-evo-1940.jpg')"></div>
+        <div class="htl-img" style="background-image:url('images/historia-evo-1909.jpg')"></div>
         <div class="htl-body">
-          <div class="htl-year">1940s</div>
-          <p class="htl-text"><span data-es>Nace Tres Plumas y se convierte en ícono nacional. «Si hay licor, que sea Tres Plumas.»</span><span data-en>Tres Plumas is born and becomes a national icon. "If it's liqueur, make it Tres Plumas."</span></p>
+          <div class="htl-year">1909</div>
+          <p class="htl-text"><span data-es>Don Pablo Juan Dellepiane ingresa a la importadora.</span><span data-en>Don Pablo Juan Dellepiane joins the import company.</span></p>
+        </div>
+      </article>
+      <article class="htl-card">
+        <div class="htl-img" style="background-image:url('images/historia-evo-1934.jpg')"></div>
+        <div class="htl-body">
+          <div class="htl-year">1934</div>
+          <p class="htl-text"><span data-es>Pablo Juan Dellepiane es nombrado director y adquiere la empresa. Comienza la producción local y la lleva al éxito.</span><span data-en>Pablo Juan Dellepiane is appointed director and acquires the company. Local production begins, and he leads it to success.</span></p>
+        </div>
+      </article>
+      <article class="htl-card">
+        <div class="htl-img" style="background-image:url('images/historia-evo-1946.jpg')"></div>
+        <div class="htl-body">
+          <div class="htl-year">1946</div>
+          <p class="htl-text"><span data-es>Nace Tres Plumas, la marca insignia de la casa: empieza con un coñac y suma una gama de licores, con el escudo de la Casa de Gales como ícono. «Si hay licor, que sea Tres Plumas.»</span><span data-en>Tres Plumas is born, the house's flagship brand: it begins with a cognac and grows into a range of liqueurs, with the crest of the House of Wales as its emblem. "If it's liqueur, make it Tres Plumas."</span></p>
         </div>
       </article>
       <article class="htl-card">
         <div class="htl-img" style="background-image:url('images/historia-evo-1970.jpg')"></div>
         <div class="htl-body">
-          <div class="htl-year">1970s</div>
-          <p class="htl-text"><span data-es>Tecnología moderna y primeras exportaciones a mercados latinoamericanos.</span><span data-en>Modern technology and first exports to Latin American markets.</span></p>
+          <div class="htl-year">1970</div>
+          <p class="htl-text"><span data-es>La conducción pasa al Ing. Pablo Jorge Dellepiane, hijo del fundador, junto a sus hijos Pablo Juan y Miguel. En 1975 la empresa fabrica y comercializa Campari.</span><span data-en>Leadership passes to Pablo Jorge Dellepiane, the founder's son, alongside his sons Pablo Juan and Miguel. In 1975 the company produces and markets Campari.</span></p>
+        </div>
+      </article>
+      <article class="htl-card">
+        <div class="htl-img" style="background-image:url('images/historia-evo-1983.jpg')"></div>
+        <div class="htl-body">
+          <div class="htl-year">1983</div>
+          <p class="htl-text"><span data-es>Lanza la Piña Colada American Club con gran éxito: la primera bebida «ready to drink» del país.</span><span data-en>Launches the American Club Piña Colada — the country's first "ready to drink" beverage.</span></p>
+        </div>
+      </article>
+      <article class="htl-card">
+        <div class="htl-img" style="background-image:url('images/historia-evo-1987.jpg')"></div>
+        <div class="htl-body">
+          <div class="htl-year">1987</div>
+          <p class="htl-text"><span data-es>La producción se traslada a Villa Mercedes, San Luis.</span><span data-en>Production moves to Villa Mercedes, San Luis.</span></p>
         </div>
       </article>
       <article class="htl-card">
         <div class="htl-img" style="background-image:url('images/historia-evo-2000.jpg')"></div>
         <div class="htl-body">
-          <div class="htl-year">2000s</div>
-          <p class="htl-text"><span data-es>Desarrollo de líneas premium y apertura a mercados europeos y asiáticos.</span><span data-en>Premium lines and entry into European and Asian markets.</span></p>
+          <div class="htl-year">2000</div>
+          <p class="htl-text"><span data-es>Lanza la energizante X4 y Delemon, sumando las bebidas sin alcohol al portfolio.</span><span data-en>Launches the X4 energy drink and Delemon, adding non-alcoholic beverages to the portfolio.</span></p>
+        </div>
+      </article>
+      <article class="htl-card">
+        <div class="htl-img" style="background-image:url('images/historia-evo-2003.jpg')"></div>
+        <div class="htl-body">
+          <div class="htl-year">2003</div>
+          <p class="htl-text"><span data-es>Dellepiane comienza a exportar sus marcas, con presencia hoy en toda América y varios países de Europa.</span><span data-en>Dellepiane begins exporting its brands, now present across the Americas and several European countries.</span></p>
+        </div>
+      </article>
+      <article class="htl-card">
+        <div class="htl-img" style="background-image:url('images/historia-evo-2015.jpg')"></div>
+        <div class="htl-body">
+          <div class="htl-year">2015</div>
+          <p class="htl-text"><span data-es>Se forma Dellepiane Spirits, la unidad de negocio de productos nacionales e importados de alta gama. Nace la línea de licores premium Golden Age.</span><span data-en>Dellepiane Spirits is formed, the business unit for high-end domestic and imported products. The Golden Age premium liqueur line is born.</span></p>
+        </div>
+      </article>
+      <article class="htl-card">
+        <div class="htl-img" style="background-image:url('images/historia-evo-2019.jpg')"></div>
+        <div class="htl-body">
+          <div class="htl-year">2019</div>
+          <p class="htl-text"><span data-es>Lanza TAMBO, licor premium de dulce de leche, producto de exportación para los mercados de USA y Europa.</span><span data-en>Launches TAMBO, a premium dulce de leche liqueur, an export product for the U.S. and European markets.</span></p>
         </div>
       </article>
       <article class="htl-card">
         <div class="htl-img" style="background-image:url('images/historia-evo-hoy.jpg')"></div>
         <div class="htl-body">
           <div class="htl-year"><span data-es>Hoy</span><span data-en>Today</span></div>
-          <p class="htl-text"><span data-es>Más de 50 productos, presencia en 20+ países y una planta que fabrica su propia maquinaria.</span><span data-en>Over 50 products, presence in 20+ countries and a plant that builds its own machinery.</span></p>
+          <p class="htl-text"><span data-es>Con más de 125 años de vida, Dellepiane Spirits sigue su expansión en Argentina y el mundo, con la incorporación de la 4ª generación de la familia.</span><span data-en>With over 125 years of history, Dellepiane Spirits continues its expansion in Argentina and abroad, welcoming the family's fourth generation.</span></p>
         </div>
       </article>
+      </div>
     </div>
   </section>
 
@@ -1235,10 +1300,12 @@
       const next  = document.getElementById('htlNext');
       if (!track || !prev || !next) return;
 
+      const CARDS_PER_CLICK = 4;
       function step() {
         const card = track.querySelector('.htl-card');
         const gap = parseFloat(getComputedStyle(track).gap) || 24;
-        return card ? card.offsetWidth + gap : 320;
+        const one = card ? card.offsetWidth + gap : 320;
+        return one * CARDS_PER_CLICK;
       }
 
       function update() {
