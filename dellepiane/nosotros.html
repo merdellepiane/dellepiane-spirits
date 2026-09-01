@@ -627,8 +627,8 @@
     .htl-track::-webkit-scrollbar { display: none; }
 
     .htl-card {
-      flex: 0 0 auto;
-      width: 300px;
+      flex: 0 0 calc((100% - 72px) / 4);
+      width: auto;
       scroll-snap-align: start;
       background: var(--blanco);
       border: 1px solid var(--borde);
@@ -797,6 +797,7 @@
       .hist-stat:nth-child(3) { border-left: none; border-top: 1px solid var(--borde); }
       .hist-stat:nth-child(4) { border-top: 1px solid var(--borde); }
       .contacto-grid { grid-template-columns: 1fr; }
+      .htl-card { flex: 0 0 calc((100% - 24px) / 2); }
     }
 
     @media (max-width: 768px) {
@@ -811,7 +812,7 @@
       .hist-hero-content { padding: 0 24px 40px; }
       .capacidad { grid-template-columns: 1fr; gap: 4px; }
       .htl-head { flex-direction: column; align-items: flex-start; gap: 20px; }
-      .htl-card { width: 260px; }
+      .htl-card { flex: 0 0 260px; width: auto; }
       .htl-viewport { padding: 0 44px; }
       .htl-arrow-prev, .htl-arrow-next { top: 101px; width: 36px; height: 36px; }
       .htl-arrow-prev { left: 2px; }
@@ -1300,12 +1301,13 @@
       const next  = document.getElementById('htlNext');
       if (!track || !prev || !next) return;
 
-      const CARDS_PER_CLICK = 4;
       function step() {
         const card = track.querySelector('.htl-card');
+        if (!card) return 320;
         const gap = parseFloat(getComputedStyle(track).gap) || 24;
-        const one = card ? card.offsetWidth + gap : 320;
-        return one * CARDS_PER_CLICK;
+        const cardW = card.offsetWidth + gap;
+        const perView = Math.max(1, Math.round(track.clientWidth / cardW));
+        return cardW * perView;
       }
 
       function update() {
