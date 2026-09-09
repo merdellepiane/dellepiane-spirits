@@ -269,7 +269,6 @@
       border-bottom: 1px solid var(--borde);
     }
 
-
     .nav-mobile-sub {
       display: none;
       padding-left: 16px;
@@ -369,16 +368,16 @@
       inset: 0;
       background: linear-gradient(
         to right,
-        rgba(10,10,10,0.68) 0%,
-        rgba(10,10,10,0.42) 45%,
-        rgba(10,10,10,0.10) 100%
+        rgba(10,10,10,0.42) 0%,
+        rgba(10,10,10,0.12) 42%,
+        rgba(10,10,10,0) 72%
       );
     }
 
     .slide-overlay-bottom {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,0.42) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.24) 44%, transparent 70%);
     }
 
     /* Contenido: alineado al fondo izquierdo, igual que el hero original */
@@ -443,13 +442,13 @@
     /* h1 — igual que el original */
     h1 {
       font-family: var(--serif);
-      font-size: clamp(52px, 7vw, 96px);
+      font-size: clamp(42px, 5.4vw, 76px);
       font-weight: 300;
-      line-height: 1.05;
+      line-height: 1.06;
       color: var(--blanco);
       margin-bottom: 32px;
       letter-spacing: -0.01em;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.45);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5), 0 4px 40px rgba(0,0,0,0.5);
       opacity: 0;
       transform: translateY(18px);
       transition: opacity 0.65s ease 0.42s, transform 0.65s ease 0.42s;
@@ -457,7 +456,7 @@
 
     h1 em {
       font-style: italic;
-      color: rgba(250, 250, 248, 0.6);
+      color: rgba(250, 250, 248, 0.92);
     }
 
     .slide.active h1 { opacity: 1; transform: translateY(0); }
@@ -487,6 +486,10 @@
     }
 
     .slide.active .slide-ctas { opacity: 1; transform: translateY(0); }
+
+    /* --- Opción B: hero minimal (menos texto, más foto) --- */
+    /* Volanta y subtítulo se ocultan por CSS (contenido intacto); para mostrarlos, quitar esta regla. */
+    .slide-eyebrow, .slide-sub { display: none; }
 
     /* CTAs — igual que los originales */
     .cta-primary {
@@ -741,18 +744,15 @@
     #productos {
       background: var(--gris-claro);
       border-top: 1px solid var(--borde);
-      padding-bottom: 120px;
+      padding-top: 40px;
+      padding-bottom: 96px;
+      scroll-margin-top: 64px;
     }
 
     .productos-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 0;
-      max-width: var(--max-w);
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 40px;
     }
+    .productos-header .section-label { margin-bottom: 20px; }
 
     /* Contenedor editorial: lista + imagen lateral */
     .productos-editorial {
@@ -785,6 +785,7 @@
     .producto-item:hover { background: rgba(59,75,168,0.03); }
     .producto-item:hover .producto-nombre { color: var(--azul); }
     .producto-item:hover .producto-arrow { color: var(--azul); transform: translateX(5px); }
+    .producto-item.is-active { background: rgba(59,75,168,0.06); }
     .producto-item.is-active .producto-nombre { color: var(--azul); }
     .producto-item.is-active .producto-arrow { color: var(--azul); }
 
@@ -827,11 +828,13 @@
 
     /* Panel de imagen lateral */
     .productos-imagen-panel {
+      align-self: start;
       position: sticky;
-      top: 88px;
-      height: 660px;
+      top: 64px;
+      height: calc(100vh - 64px);
       overflow: hidden;
       background: var(--gris-claro);
+      cursor: pointer;
     }
 
     .productos-imagen-frame {
@@ -1194,17 +1197,14 @@
     /* Rango intermedio: se angosta el panel de imagen para dar aire a la lista */
     @media (max-width: 1180px) and (min-width: 769px) {
       .productos-editorial { grid-template-columns: 1fr 420px; gap: 36px; }
-      .productos-imagen-panel { height: 560px; }
+      .productos-imagen-panel { height: calc(100vh - 64px); }
       .producto-nombre { font-size: 26px; }
     }
 
     @media (max-width: 768px) {
+      nav { padding: 0 24px; }
       .nav-links { display: none; }
-      .nav-burger { display: flex; width: 34px; height: 34px; padding: 7px; }
-      .nav-logo img { height: 26px; }
-      .nav-right { display: contents; }
-      .lang-toggle { font-size: 10px; gap: 4px; }
-      .btn-tienda, .btn-tienda-nav { padding: 6px 12px; font-size: 10px; letter-spacing: 0.06em; }
+      .nav-burger { display: flex; }
       section { padding: 80px 24px; }
       #hero { max-height: 680px; }
       .slide-content { padding: 0 24px 64px; }
@@ -1251,6 +1251,7 @@
       .wa-widget { right: 16px; bottom: 16px; width: 52px; height: 52px; }
     }
   </style>
+  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
 
@@ -1273,7 +1274,7 @@
             <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
             <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
             <div class="nav-drop-divider"></div>
-            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalogue</span></a>
+            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalog</span></a>
           </div>
         </li>
         <li><a href="#exportacion"><span data-es>Exportación</span><span data-en>Export</span></a></li>
@@ -1305,7 +1306,7 @@
       <a href="premium-spirits.html">Premium Spirits</a>
       <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
       <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
-      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalogue ↓</span></a>
+      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalog ↓</span></a>
     </div>
     <a href="#exportacion" class="nav-mobile-link"><span data-es>Exportación</span><span data-en>Export</span></a>
     <a href="#contacto" class="nav-mobile-link"><span data-es>Contacto</span><span data-en>Contact</span></a>
@@ -1342,7 +1343,6 @@
         <p class="slide-sub"><span data-es>Licores, espirituosas y bebidas premium. Más de un siglo de producción nacional con estándares internacionales.</span><span data-en>Premium liqueurs, spirits and beverages. Over a century of national production with international standards.</span></p>
         <div class="slide-ctas">
           <a href="#productos" class="cta-primary"><span data-es>Conocé nuestras líneas</span><span data-en>Explore our lines</span></a>
-          <a href="#exportacion" class="cta-secondary"><span data-es>Exportación</span><span data-en>Export</span></a>
         </div>
       </div>
     </article>
@@ -1358,8 +1358,7 @@
         <h1><span data-es>Nuestras<br><em>líneas premium.</em></span><span data-en>Our<br><em>premium lines.</em></span></h1>
         <p class="slide-sub"><span data-es>Más de 50 productos que representan lo mejor de la licorera argentina, con presencia en más de 20 países.</span><span data-en>Over 50 products representing the best of Argentine liqueur-making, present in more than 20 countries.</span></p>
         <div class="slide-ctas">
-          <a href="#productos" class="cta-primary"><span data-es>Ver productos</span><span data-en>View products</span></a>
-          <a href="#exportacion" class="cta-secondary"><span data-es>Exportación</span><span data-en>Export</span></a>
+          <a href="#exportacion" class="cta-primary"><span data-es>Exportación</span><span data-en>Export</span></a>
         </div>
       </div>
     </article>
@@ -1373,7 +1372,7 @@
       <div class="slide-content">
         <span class="slide-line"></span>
         <p class="slide-eyebrow"><span data-es>Destilación artesanal</span><span data-en>Artisanal Distillation</span></p>
-        <h1><span data-es>Un siglo de<br><em>destilación.</em></span><span data-en>A century of<br><em>distillation.</em></span></h1>
+        <h1><span data-es>Más de un siglo de<br><em>destilación.</em></span><span data-en>Over a century of<br><em>distillation.</em></span></h1>
         <p class="slide-sub"><span data-es>Procesos que combinan la tradición familiar con tecnología de vanguardia para garantizar la excelencia en cada botella.</span><span data-en>Processes combining family tradition with cutting-edge technology to guarantee excellence in every bottle.</span></p>
         <div class="slide-ctas">
           <a href="nosotros.html#historia-h" class="cta-primary"><span data-es>Nuestra historia</span><span data-en>Our history</span></a>
@@ -1422,15 +1421,16 @@
 
   <!-- PRODUCTOS -->
   <section id="productos">
-    <div class="productos-header">
-      <div>
-        <div class="section-label"><span data-es>Productos</span><span data-en>Products</span></div>
-        <h2><span data-es>Nuestras líneas.</span><span data-en>Our lines.</span></h2>
-      </div>
-    </div>
     <div class="productos-editorial">
-      <!-- Lista editorial -->
-      <div class="productos-lista fade-in">
+      <div class="productos-col">
+        <div class="productos-header">
+          <div>
+            <div class="section-label"><span data-es>Productos</span><span data-en>Products</span></div>
+            <h2><span data-es>Nuestros productos.</span><span data-en>Our products.</span></h2>
+          </div>
+        </div>
+        <!-- Lista editorial -->
+        <div class="productos-lista fade-in">
         <a href="tres-plumas.html" class="producto-item" data-img="images/categoria-tresplumas.webp" data-label="Línea clásica">
           <span class="producto-num">01</span>
           <span class="producto-info">
@@ -1443,7 +1443,7 @@
           <span class="producto-num">02</span>
           <span class="producto-info">
             <span class="producto-nombre"><span data-es>Clásicos Argentinos</span><span data-en>Argentine Classics</span></span>
-            <span class="producto-tag"><span data-es>Los sabores de siempre, de acá</span><span data-en>The flavours of always, from here</span></span>
+            <span class="producto-tag"><span data-es>Los sabores de siempre, de acá</span><span data-en>Timeless flavors, made right here</span></span>
           </span>
           <span class="producto-arrow">→</span>
         </a>
@@ -1451,7 +1451,7 @@
           <span class="producto-num">03</span>
           <span class="producto-info">
             <span class="producto-nombre">Tambo</span>
-            <span class="producto-tag"><span data-es>Esencias auténticas de Argentina</span><span data-en>Authentic Argentine essences</span></span>
+            <span class="producto-tag"><span data-es>Licor premium de Dulce de Leche</span><span data-en>Premium Dulce de Leche liqueur</span></span>
           </span>
           <span class="producto-arrow">↗</span>
         </a>
@@ -1459,7 +1459,7 @@
           <span class="producto-num">04</span>
           <span class="producto-info">
             <span class="producto-nombre">Golden Age</span>
-            <span class="producto-tag"><span data-es>Sofisticación en cada botella</span><span data-en>Sophistication in every bottle</span></span>
+            <span class="producto-tag"><span data-es>Licores finos para coctelería clásica</span><span data-en>Fine liqueurs for classic cocktails</span></span>
           </span>
           <span class="producto-arrow">→</span>
         </a>
@@ -1467,7 +1467,7 @@
           <span class="producto-num">05</span>
           <span class="producto-info">
             <span class="producto-nombre">Premium Spirits</span>
-            <span class="producto-tag"><span data-es>El mundo en una sola bodega</span><span data-en>The world in a single cellar</span></span>
+            <span class="producto-tag"><span data-es>Nuestra selección más premium</span><span data-en>Our most premium selection</span></span>
           </span>
           <span class="producto-arrow">→</span>
         </a>
@@ -1475,7 +1475,7 @@
           <span class="producto-num">06</span>
           <span class="producto-info">
             <span class="producto-nombre"><span data-es>Destilados</span><span data-en>Distilled</span></span>
-            <span class="producto-tag"><span data-es>Un siglo de destilación artesanal</span><span data-en>A century of artisanal distillation</span></span>
+            <span class="producto-tag"><span data-es>Más de un siglo de destilación artesanal</span><span data-en>Over a century of artisanal distillation</span></span>
           </span>
           <span class="producto-arrow">→</span>
         </a>
@@ -1483,10 +1483,11 @@
           <span class="producto-num">07</span>
           <span class="producto-info">
             <span class="producto-nombre"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></span>
-            <span class="producto-tag"><span data-es>Todo el sabor, sin el alcohol</span><span data-en>All the flavour, none of the alcohol</span></span>
+            <span class="producto-tag"><span data-es>Todo el sabor, sin el alcohol</span><span data-en>All the flavor, none of the alcohol</span></span>
           </span>
           <span class="producto-arrow">→</span>
         </a>
+      </div>
       </div>
       <!-- Panel de imagen lateral -->
       <div class="productos-imagen-panel" aria-hidden="true">
@@ -1512,7 +1513,7 @@
       <div class="exportacion-contacto">
         <p class="exportacion-intro">
           <span data-es>Exportamos a más de 20 países en América, Europa y Asia. Para consultas de importación y distribución:</span>
-          <span data-en>We export to over 20 countries across the Americas, Europe and Asia. For import and distribution enquiries:</span>
+          <span data-en>We export to over 20 countries across the Americas, Europe and Asia. For import and distribution inquiries:</span>
         </p>
 
         <div class="exportacion-dato">
@@ -1551,7 +1552,7 @@
   <section id="rse">
     <div class="section-label" style="justify-content: center;"><span data-es>Responsabilidad Social</span><span data-en>Social Responsibility</span></div>
     <h2><span data-es>Producción responsable,<br><em>comunidad presente.</em></span><span data-en>Responsible production,<br><em>community first.</em></span></h2>
-    <p><span data-es>Dellepiane asume un compromiso activo con el entorno social y ambiental en el que opera. Nuestras prácticas productivas priorizan el uso responsable de recursos, el bienestar de nuestros colaboradores y el desarrollo de las comunidades donde estamos presentes.</span><span data-en>Dellepiane takes an active commitment to the social and environmental context in which it operates. Our production practices prioritise the responsible use of resources, the wellbeing of our team and the development of the communities where we are present.</span></p>
+    <p><span data-es>Dellepiane asume un compromiso activo con el entorno social y ambiental en el que opera. Nuestras prácticas productivas priorizan el uso responsable de recursos, el bienestar de nuestros colaboradores y el desarrollo de las comunidades donde estamos presentes.</span><span data-en>Dellepiane takes an active commitment to the social and environmental context in which it operates. Our production practices prioritize the responsible use of resources, the well-being of our team and the development of the communities where we are present.</span></p>
   </section>
 
   <!-- CONTACTO + FOOTER -->
@@ -1644,10 +1645,16 @@
 
       items.forEach(function(item, i) {
         item.addEventListener('mouseenter', function() { showSlide(i); });
-        // Al salir del hover, volver siempre a la primera imagen
-        item.addEventListener('mouseleave', function() { showSlide(0); });
         item.addEventListener('focusin',    function() { showSlide(i); });
-        item.addEventListener('focusout',   function() { showSlide(0); });
+      });
+
+      // La foto es un hipervínculo al producto que se está mostrando
+      frame.addEventListener('click', function() {
+        if (active < 0) return;
+        var a = items[active];
+        if (!a) return;
+        if (a.target === '_blank') window.open(a.href, '_blank');
+        else window.location.href = a.href;
       });
     })();
 
@@ -1861,14 +1868,8 @@
         else if (e.key === 'ArrowRight') { goTo(current + 1); resetTimer(); }
       });
 
-      /* Pausa al hover */
-      hero.addEventListener('mouseenter', () => { paused = true; pauseProgress(); clearInterval(timer); });
-      hero.addEventListener('mouseleave', () => {
-        paused = false;
-        resumeProgress();
-        const rem = Math.max(DURATION - elapsed, 0);
-        timer = setTimeout(() => { goTo(current + 1); resetTimer(); }, rem);
-      });
+      /* El hero NO se pausa al hover: como ocupa toda la pantalla, pausar al pasar
+         el mouse hacía que casi siempre quedara detenido. Sigue avanzando solo. */
 
       /* Swipe táctil */
       let tx = 0;
