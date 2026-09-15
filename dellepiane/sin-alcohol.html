@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sin Alcohol — Dellepiane Spirits</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -261,7 +266,6 @@
       border-bottom: 1px solid var(--borde);
     }
 
-
     .nav-mobile-sub {
       display: none;
       padding-left: 16px;
@@ -341,6 +345,7 @@
       text-decoration: none;
       background: var(--gris-claro);
     }
+    .li-cell-wide { grid-column: 1 / -1; }
 
     .li-cell img {
       position: absolute;
@@ -580,11 +585,7 @@
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .nav-burger { display: flex; width: 34px; height: 34px; padding: 7px; }
-      .nav-logo img { height: 26px; }
-      .nav-right { display: contents; }
-      .lang-toggle { font-size: 10px; gap: 4px; }
-      .btn-tienda, .btn-tienda-nav { padding: 6px 12px; font-size: 10px; letter-spacing: 0.06em; }
+      .nav-burger { display: flex; }
       .nav-inner { padding: 0 24px; }
       .linea-hero { grid-template-columns: 1fr; }
       .linea-imagen { min-height: 300px; }
@@ -621,6 +622,7 @@
       .wa-widget { right: 16px; bottom: 16px; width: 52px; height: 52px; }
     }
   </style>
+  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
 
@@ -643,7 +645,7 @@
             <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
             <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
             <div class="nav-drop-divider"></div>
-            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalogue</span></a>
+            <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo</span><span data-en>Download catalog</span></a>
           </div>
         </li>
         <li><a href="index.html#exportacion"><span data-es>Exportación</span><span data-en>Export</span></a></li>
@@ -675,7 +677,7 @@
       <a href="premium-spirits.html">Premium Spirits</a>
       <a href="destilados.html"><span data-es>Destilados</span><span data-en>Distilled</span></a>
       <a href="sin-alcohol.html"><span data-es>Sin Alcohol</span><span data-en>Non-Alcoholic</span></a>
-      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalogue ↓</span></a>
+      <a href="files/catalogo-dellepiane.pdf" target="_blank" class="nav-drop-catalogo"><span data-es>Descargar catálogo ↓</span><span data-en>Download catalog ↓</span></a>
     </div>
     <a href="index.html#exportacion" class="nav-mobile-link"><span data-es>Exportación</span><span data-en>Export</span></a>
     <a href="index.html#contacto" class="nav-mobile-link"><span data-es>Contacto</span><span data-en>Contact</span></a>
@@ -695,6 +697,10 @@
         <img src="images/producto-bark-tonica.jpg" alt="Bark Tónica">
         <span class="li-cell-label"><span data-es>Tónica Bark</span><span data-en>Bark Tonic</span></span>
       </a>
+      <a href="https://www.dellepianespirits.com/store/product-category/sin-alcohol/" target="_blank" class="li-cell li-cell-wide">
+        <img src="images/producto-ginger-bark.jpg" alt="Ginger Bark">
+        <span class="li-cell-label"><span data-es>Ginger Bark</span><span data-en>Ginger Bark</span></span>
+      </a>
     </div>
 
     <div class="linea-info">
@@ -707,15 +713,16 @@
       </div>
 
       <h1 class="linea-nombre">Sin Alcohol</h1>
-      <p class="linea-subtitulo"><span data-es>Todo el sabor, sin el alcohol.</span><span data-en>All the flavour, none of the alcohol.</span></p>
+      <p class="linea-subtitulo"><span data-es>Todo el sabor, sin el alcohol.</span><span data-en>All the flavor, none of the alcohol.</span></p>
 
       <div class="linea-descripcion">
         <p><span data-es>Nuestra línea sin alcohol está pensada para quienes quieren disfrutar de una experiencia premium sin el contenido alcohólico. Bebidas elaboradas con los mismos estándares de calidad que caracterizan a Dellepiane.</span><span data-en>Our non-alcoholic line is designed for those who want to enjoy a premium experience without the alcohol. Beverages crafted to the same quality standards that define Dellepiane.</span></p>
-        <p><span data-es>Sabores auténticos, ingredientes seleccionados y una propuesta perfecta para cualquier ocasión y cualquier persona.</span><span data-en>Authentic flavours, selected ingredients and a perfect proposition for any occasion and any person.</span></p>
+        <p><span data-es>Sabores auténticos, ingredientes seleccionados y una propuesta perfecta para cualquier ocasión y cualquier persona.</span><span data-en>Authentic flavors, selected ingredients and a perfect proposition for any occasion and everyone.</span></p>
       </div>
 
       <a href="https://www.dellepianespirits.com/store/product-category/sin-alcohol/" target="_blank" class="btn-conseguilos">
-        Conseguilos en nuestra tienda
+        <span data-es>Conseguílos en nuestra tienda</span>
+        <span data-en>Find them at our shop</span>
       </a>
 
     </div>
