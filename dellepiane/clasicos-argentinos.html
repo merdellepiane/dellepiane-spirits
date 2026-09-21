@@ -710,7 +710,6 @@
       .wa-widget { right: 16px; bottom: 16px; width: 52px; height: 52px; }
     }
   </style>
-  <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
 
@@ -895,6 +894,7 @@
 
       function setLang(lang) {
         body.classList.toggle('lang-en', lang === 'en');
+        document.documentElement.lang = lang;
         document.querySelectorAll('.lang-btn').forEach(btn => {
           btn.classList.toggle('active', btn.dataset.lang === lang);
         });

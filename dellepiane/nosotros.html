@@ -1209,11 +1209,12 @@
   <script>
     /* ── Idioma ── */
     (function () {
-      const STORAGE_KEY = 'dellepiane-lang';
+      const STORAGE_KEY = 'dp_lang';
       const buttons = document.querySelectorAll('.lang-btn');
 
       function setLang(lang) {
         document.body.classList.toggle('lang-en', lang === 'en');
+        document.documentElement.lang = lang;
         buttons.forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
         localStorage.setItem(STORAGE_KEY, lang);
       }
