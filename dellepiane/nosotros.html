@@ -1372,7 +1372,11 @@
   var lazy=[].slice.call(document.querySelectorAll('[data-bg]'));
   if('IntersectionObserver' in window){
     var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting){ put(e.target,e.target.getAttribute('data-bg')); e.target.removeAttribute('data-bg'); io.unobserve(e.target); } });
+      entries.forEach(function(e){ if(!e.isIntersecting) return;
+        var track=e.target.closest('.htl-track');
+        var group=track ? [].slice.call(track.querySelectorAll('[data-bg]')) : [e.target];
+        group.forEach(function(el){ put(el,el.getAttribute('data-bg')); el.removeAttribute('data-bg'); io.unobserve(el); });
+      });
     },{rootMargin:'400px 0px'});
     lazy.forEach(function(el){ io.observe(el); });
   } else { lazy.forEach(function(el){ put(el,el.getAttribute('data-bg')); }); }
