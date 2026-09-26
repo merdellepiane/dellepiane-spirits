@@ -1,0 +1,80 @@
+# Sube la web institucional (carpeta "dellepiane" del repo) a DreamHost por SFTP.
+#
+# - Se ejecuta sola cada vez que hacés Push de cambios dentro de la carpeta "dellepiane",
+#   y también se puede lanzar a mano desde la pestaña Actions ("Run workflow").
+# - NUNCA borra nada del servidor: solo agrega archivos nuevos y reemplaza los que cambiaron.
+#   La tienda (/store) y las otras carpetas del servidor no se tocan.
+# - Necesita dos "Secrets" en GitHub: SFTP_USER (dh_mut9ha) y SSH_PRIVATE_KEY (la llave privada).
+
+name: Deploy a DreamHost
+
+on:
+  push:
+    branches: [main]
+    paths: ["dellepiane/**"]
+  workflow_dispatch:
+
+concurrency: deploy-dreamhost
+
+env:
+  SFTP_HOST: vps31863.dreamhostps.com
+  LOCAL_DIR: dellepiane
+  # Carpeta destino en el servidor (relativa al inicio del usuario SFTP).
+  #   PRUEBA:       dellepianespirits.com/nueva
+  #   PUBLICACIÓN:  dellepianespirits.com      <- cambiar recién cuando la prueba esté aprobada
+  REMOTE_DIR: dellepianespirits.com/nueva
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repo
+        uses: actions/checkout@v4
+
+      - name: Controles de seguridad
+        run: |
+          set -e
+          test -f "$LOCAL_DIR/index.html" || { echo "ERROR: no existe $LOCAL_DIR/index.html"; exit 1; }
+          # La web no puede traer carpetas con el mismo nombre que las que ya existen en el servidor
+          for d in store news clubdellepiane .well-known; do
+            if [ -e "$LOCAL_DIR/$d" ]; then
+              echo "ERROR: la web trae '$d' y chocaría con lo que ya hay en el servidor. No se sube nada."
+              exit 1
+            fi
+          done
+          # El destino tiene que ser una carpeta concreta (nunca vacío ni con "..")
+          case "$REMOTE_DIR" in
+            ""|"."|"/"|*..*) echo "ERROR: REMOTE_DIR inválido: '$REMOTE_DIR'"; exit 1;;
+          esac
+          # Archivos basura de Mac: no se suben
+          find "$LOCAL_DIR" -name '.DS_Store' -delete
+          echo "OK: se va a subir '$LOCAL_DIR' a '$REMOTE_DIR'"
+
+      - name: Instalar lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Preparar la llave SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$SFTP_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Subir archivos (sin borrar nada del servidor)
+        env:
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+        run: |
+          lftp -e "
+            set sftp:connect-program 'ssh -a -x -i $HOME/.ssh/deploy_key -o IdentitiesOnly=yes';
+            set net:max-retries 3;
+            set net:timeout 30;
+            open -u $SFTP_USER, sftp://$SFTP_HOST;
+            mirror --reverse --verbose --no-perms --parallel=4 --exclude-glob .DS_Store $LOCAL_DIR $REMOTE_DIR;
+            bye
+          "
+
+      - name: Borrar la llave del servidor de GitHub
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
