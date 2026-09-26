@@ -1339,7 +1339,7 @@
 
     <!-- SLIDE 2 -->
     <article class="slide" data-type="image">
-      <div class="slide-bg" style="background-image: url('images/hero-familia.jpg');"></div>
+      <div class="slide-bg" data-bg-defer="images/hero-familia.jpg"></div>
       <div class="slide-overlay"></div>
       <div class="slide-overlay-bottom"></div>
       <div class="slide-content">
@@ -1355,7 +1355,7 @@
 
     <!-- SLIDE 3 -->
     <article class="slide" data-type="image">
-      <div class="slide-bg" style="background-image: url('images/hero-exportacion.jpg');"></div>
+      <div class="slide-bg" data-bg-defer="images/hero-exportacion.jpg"></div>
       <div class="slide-overlay"></div>
       <div class="slide-overlay-bottom"></div>
       <div class="slide-content">
@@ -1372,7 +1372,7 @@
     <!-- SLIDE 4 — cuando tengas video: cambiá data-type="video" y reemplazá .slide-bg por
          <video src="tu-video.mp4" poster="poster.jpg" muted loop playsinline preload="metadata"></video> -->
     <article class="slide" data-type="image">
-      <div class="slide-bg" style="background-image: url('images/hero-destilacion.jpg');"></div>
+      <div class="slide-bg" data-bg-defer="images/hero-destilacion.jpg"></div>
       <div class="slide-overlay"></div>
       <div class="slide-overlay-bottom"></div>
       <div class="slide-content">
@@ -1402,9 +1402,9 @@
 
       <!-- Mini-slide: material histórico + planta actual -->
       <div class="historia-visual">
-        <div class="historia-slide active" style="background-image:url('images/historia-fundacion.jpg')"></div>
-        <div class="historia-slide" style="background-image:url('images/historia-planta-actual-1.jpg')"></div>
-        <div class="historia-slide" style="background-image:url('images/historia-planta-actual-2.jpg')"></div>
+        <div class="historia-slide active" data-bg="images/historia-fundacion.jpg"></div>
+        <div class="historia-slide" data-bg="images/historia-planta-actual-1.jpg"></div>
+        <div class="historia-slide" data-bg="images/historia-planta-actual-2.jpg"></div>
         <div class="historia-slide-dots">
           <button class="historia-dot active" data-idx="0" aria-label="Imagen 1"></button>
           <button class="historia-dot" data-idx="1" aria-label="Imagen 2"></button>
@@ -1565,7 +1565,7 @@
   <footer id="contacto">
     <div class="contacto-grid fade-in">
       <div>
-        <img src="images/logo-blanco.png" alt="Dellepiane Spirits" class="contacto-marca">
+        <img src="images/logo-blanco.png" alt="Dellepiane Spirits" class="contacto-marca" loading="lazy" decoding="async">
         <p class="contacto-tagline"><span data-es>Licores y espirituosas premium elaborados en Argentina desde 1898.</span><span data-en>Premium liqueurs and spirits crafted in Argentina since 1898.</span></p>
       </div>
       <div class="contacto-col">
@@ -2220,5 +2220,21 @@
     </svg>
   </a>
 
+
+<script>
+/* Carga diferida de fondos: data-bg = al acercarse a la pantalla; data-bg-defer = después de cargar la página */
+(function(){
+  function put(el,url){ el.style.backgroundImage="url('"+url+"')"; }
+  var lazy=[].slice.call(document.querySelectorAll('[data-bg]'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ put(e.target,e.target.getAttribute('data-bg')); e.target.removeAttribute('data-bg'); io.unobserve(e.target); } });
+    },{rootMargin:'400px 0px'});
+    lazy.forEach(function(el){ io.observe(el); });
+  } else { lazy.forEach(function(el){ put(el,el.getAttribute('data-bg')); }); }
+  function deferred(){ [].slice.call(document.querySelectorAll('[data-bg-defer]')).forEach(function(el){ put(el,el.getAttribute('data-bg-defer')); el.removeAttribute('data-bg-defer'); }); }
+  if(document.readyState==='complete'){ deferred(); } else { window.addEventListener('load',deferred); }
+})();
+</script>
 </body>
 </html>

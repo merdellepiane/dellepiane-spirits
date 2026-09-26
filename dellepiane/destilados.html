@@ -777,8 +777,8 @@
     <div class="linea-imagen">
       <!-- Reemplazar por las 3 fotos del slider: images/hero-destilados-1/2/3.jpg (mín. 1200×1400px) -->
       <div class="li-slide active" style="background-image:url('images/hero-destilados-1.jpg')"></div>
-      <div class="li-slide" style="background-image:url('images/hero-destilados-2.jpg')"></div>
-      <div class="li-slide" style="background-image:url('images/hero-destilados-3.jpg')"></div>
+      <div class="li-slide" data-bg-defer="images/hero-destilados-2.jpg"></div>
+      <div class="li-slide" data-bg-defer="images/hero-destilados-3.jpg"></div>
       <div class="li-dots">
         <button class="li-dot active" aria-label="Foto 1"></button>
         <button class="li-dot" aria-label="Foto 2"></button>
@@ -820,23 +820,23 @@
       <div class="lp-grid" style="--cols:5">
         <!-- href → reemplazar por la ficha de cada producto en la tienda cuando estén las URLs -->
         <a href="https://www.dellepianespirits.com/store/productos/gin-burnetts/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-gin-burnetts.jpg" alt="Gin Burnett's"></div>
+          <div class="lp-foto"><img src="images/producto-gin-burnetts.jpg" alt="Gin Burnett's" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Gin Burnett's</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/?post_type=product&p=2851" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-grappa-valleviejo.jpg" alt="Grappa Valleviejo"></div>
+          <div class="lp-foto"><img src="images/producto-grappa-valleviejo.jpg" alt="Grappa Valleviejo" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Grappa Valleviejo</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/anis-shami/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-anis-shami.jpg" alt="Anís Shami"></div>
+          <div class="lp-foto"><img src="images/producto-anis-shami.jpg" alt="Anís Shami" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Anís Shami</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/tequila-conquistador/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-tequila-conquistador.jpg" alt="Tequila Conquistador"></div>
+          <div class="lp-foto"><img src="images/producto-tequila-conquistador.jpg" alt="Tequila Conquistador" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Tequila Conquistador</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/vodka-tailov/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-vodka-tailov.jpg" alt="Vodka Tailov"></div>
+          <div class="lp-foto"><img src="images/producto-vodka-tailov.jpg" alt="Vodka Tailov" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Vodka Tailov</span></div>
         </a>
       </div>
@@ -846,7 +846,7 @@
   <footer id="contacto">
     <div class="contacto-grid">
       <div>
-        <img src="images/logo-blanco.png" alt="Dellepiane Spirits" class="contacto-marca">
+        <img src="images/logo-blanco.png" alt="Dellepiane Spirits" class="contacto-marca" loading="lazy" decoding="async">
         <p class="contacto-tagline"><span data-es>Licores y espirituosas premium elaborados en Argentina desde 1898.</span><span data-en>Premium liqueurs and spirits crafted in Argentina since 1898.</span></p>
       </div>
       <div class="contacto-col">
@@ -1039,5 +1039,21 @@
     </svg>
   </a>
 
+
+<script>
+/* Carga diferida de fondos: data-bg = al acercarse a la pantalla; data-bg-defer = después de cargar la página */
+(function(){
+  function put(el,url){ el.style.backgroundImage="url('"+url+"')"; }
+  var lazy=[].slice.call(document.querySelectorAll('[data-bg]'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ put(e.target,e.target.getAttribute('data-bg')); e.target.removeAttribute('data-bg'); io.unobserve(e.target); } });
+    },{rootMargin:'400px 0px'});
+    lazy.forEach(function(el){ io.observe(el); });
+  } else { lazy.forEach(function(el){ put(el,el.getAttribute('data-bg')); }); }
+  function deferred(){ [].slice.call(document.querySelectorAll('[data-bg-defer]')).forEach(function(el){ put(el,el.getAttribute('data-bg-defer')); el.removeAttribute('data-bg-defer'); }); }
+  if(document.readyState==='complete'){ deferred(); } else { window.addEventListener('load',deferred); }
+})();
+</script>
 </body>
 </html>

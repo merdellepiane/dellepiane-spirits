@@ -777,8 +777,8 @@
     <div class="linea-imagen">
       <!-- Reemplazar por las 3 fotos del slider: images/hero-clasicos-argentinos-1/2/3.jpg (mín. 1200×1400px) -->
       <div class="li-slide active" style="background-image:url('images/hero-clasicos-argentinos-1.jpg')"></div>
-      <div class="li-slide" style="background-image:url('images/hero-clasicos-argentinos-2.jpg')"></div>
-      <div class="li-slide" style="background-image:url('images/hero-clasicos-argentinos-3.jpg')"></div>
+      <div class="li-slide" data-bg-defer="images/hero-clasicos-argentinos-2.jpg"></div>
+      <div class="li-slide" data-bg-defer="images/hero-clasicos-argentinos-3.jpg"></div>
       <div class="li-dots">
         <button class="li-dot active" aria-label="Foto 1"></button>
         <button class="li-dot" aria-label="Foto 2"></button>
@@ -821,34 +821,34 @@
       <div class="lp-grid" style="--cols:4">
         <!-- href → reemplazar por la ficha de cada producto en la tienda cuando estén las URLs -->
         <a href="https://www.dellepianespirits.com/store/product-category/clasicos-argentinos/?marca=american-club" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-american-club.jpg" alt="American Club"></div>
+          <div class="lp-foto"><img src="images/producto-american-club.jpg" alt="American Club" loading="lazy" decoding="async"></div>
           <!-- Si preferís el logo de la marca en vez del nombre en texto:
                <img class="lp-marca-logo" src="images/logo-american-club.png" alt="American Club"> -->
           <div class="lp-nombre"><span>American Club</span></div>
           <p class="lp-desc">Piña colada · Frutilla colada</p>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/anis-8-hermanos/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-anis-8-hermanos.jpg" alt="Anís 8 Hermanos"></div>
+          <div class="lp-foto"><img src="images/producto-anis-8-hermanos.jpg" alt="Anís 8 Hermanos" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Anís 8 Hermanos</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/mariposa/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-mariposa.jpg" alt="Mariposa"></div>
+          <div class="lp-foto"><img src="images/producto-mariposa.jpg" alt="Mariposa" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Mariposa</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/legui-licor-fino/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-legui.jpg" alt="Legui"></div>
+          <div class="lp-foto"><img src="images/producto-legui.jpg" alt="Legui" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Legui</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/licor-cana/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-cana-ombu.jpg" alt="Caña Ombú"></div>
+          <div class="lp-foto"><img src="images/producto-cana-ombu.jpg" alt="Caña Ombú" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Caña Ombú</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/cana-durazno/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-cana-durazno.jpg" alt="Caña Durazno"></div>
+          <div class="lp-foto"><img src="images/producto-cana-durazno.jpg" alt="Caña Durazno" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Caña Durazno</span></div>
         </a>
         <a href="https://www.dellepianespirits.com/store/productos/cana-1o-de-agosto/" target="_blank" class="lp-item">
-          <div class="lp-foto"><img src="images/producto-cana-1-agosto.jpg" alt="Caña 1° de Agosto"></div>
+          <div class="lp-foto"><img src="images/producto-cana-1-agosto.jpg" alt="Caña 1° de Agosto" loading="lazy" decoding="async"></div>
           <div class="lp-nombre"><span>Caña 1° de Agosto</span></div>
         </a>
       </div>
@@ -858,7 +858,7 @@
   <footer id="contacto">
     <div class="contacto-grid">
       <div>
-        <img src="images/logo-blanco.png" alt="Dellepiane Spirits" class="contacto-marca">
+        <img src="images/logo-blanco.png" alt="Dellepiane Spirits" class="contacto-marca" loading="lazy" decoding="async">
         <p class="contacto-tagline"><span data-es>Licores y espirituosas premium elaborados en Argentina desde 1898.</span><span data-en>Premium liqueurs and spirits crafted in Argentina since 1898.</span></p>
       </div>
       <div class="contacto-col">
@@ -1051,5 +1051,21 @@
     </svg>
   </a>
 
+
+<script>
+/* Carga diferida de fondos: data-bg = al acercarse a la pantalla; data-bg-defer = después de cargar la página */
+(function(){
+  function put(el,url){ el.style.backgroundImage="url('"+url+"')"; }
+  var lazy=[].slice.call(document.querySelectorAll('[data-bg]'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ put(e.target,e.target.getAttribute('data-bg')); e.target.removeAttribute('data-bg'); io.unobserve(e.target); } });
+    },{rootMargin:'400px 0px'});
+    lazy.forEach(function(el){ io.observe(el); });
+  } else { lazy.forEach(function(el){ put(el,el.getAttribute('data-bg')); }); }
+  function deferred(){ [].slice.call(document.querySelectorAll('[data-bg-defer]')).forEach(function(el){ put(el,el.getAttribute('data-bg-defer')); el.removeAttribute('data-bg-defer'); }); }
+  if(document.readyState==='complete'){ deferred(); } else { window.addEventListener('load',deferred); }
+})();
+</script>
 </body>
 </html>
