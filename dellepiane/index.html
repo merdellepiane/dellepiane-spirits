@@ -972,6 +972,24 @@
 
     .exportacion-dato a:hover { color: var(--azul-claro); }
 
+    .btn-logistica {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--blanco);
+      border: 1px solid rgba(250,250,248,0.6);
+      padding: 12px 20px;
+      transition: all 0.2s;
+    }
+    .btn-logistica:hover { background: var(--blanco); color: var(--negro); border-color: var(--blanco); }
+
     .exportacion-paises {
       display: flex;
       flex-direction: column;
@@ -1323,23 +1341,7 @@
 
     <!-- SLIDE 1 -->
     <article class="slide active" data-type="image">
-      <div class="slide-bg" style="background-image: url('images/hero-tecnologia.jpg');"></div>
-      <div class="slide-overlay"></div>
-      <div class="slide-overlay-bottom"></div>
-      <div class="slide-content">
-        <span class="slide-line"></span>
-        <p class="slide-eyebrow"><span data-es>Tecnología propia</span><span data-en>In-house Technology</span></p>
-        <h1><span data-es>Industria argentina,<br><em>tecnología propia.</em></span><span data-en>Argentine industry,<br><em>in-house technology.</em></span></h1>
-        <p class="slide-sub"><span data-es>Una planta moderna que produce a escala y diseña su propia maquinaria.</span><span data-en>A modern plant producing at scale, designing its own machinery.</span></p>
-        <div class="slide-ctas">
-          <a href="nosotros.html#planta" class="cta-primary"><span data-es>Conocé la planta</span><span data-en>See the plant</span></a>
-        </div>
-      </div>
-    </article>
-
-    <!-- SLIDE 2 -->
-    <article class="slide" data-type="image">
-      <div class="slide-bg" data-bg-defer="images/hero-familia.jpg"></div>
+      <div class="slide-bg" style="background-image: url('images/hero-familia.jpg');"></div>
       <div class="slide-overlay"></div>
       <div class="slide-overlay-bottom"></div>
       <div class="slide-content">
@@ -1349,6 +1351,22 @@
         <p class="slide-sub"><span data-es>Licores, espirituosas y bebidas premium. Más de un siglo de producción nacional con estándares de calidad internacionales.</span><span data-en>Premium liqueurs, spirits and beverages. Over a century of national production with international quality standards.</span></p>
         <div class="slide-ctas">
           <a href="#productos" class="cta-primary"><span data-es>Conocé nuestras líneas</span><span data-en>Explore our lines</span></a>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 2 -->
+    <article class="slide" data-type="image">
+      <div class="slide-bg" data-bg-defer="images/hero-tecnologia.jpg"></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-overlay-bottom"></div>
+      <div class="slide-content">
+        <span class="slide-line"></span>
+        <p class="slide-eyebrow"><span data-es>Tecnología propia</span><span data-en>In-house Technology</span></p>
+        <h1><span data-es>Industria argentina,<br><em>tecnología propia.</em></span><span data-en>Argentine industry,<br><em>in-house technology.</em></span></h1>
+        <p class="slide-sub"><span data-es>Una planta moderna que produce a escala y diseña su propia maquinaria.</span><span data-en>A modern plant producing at scale, designing its own machinery.</span></p>
+        <div class="slide-ctas">
+          <a href="nosotros.html#planta" class="cta-primary"><span data-es>Conocé la planta</span><span data-en>See the plant</span></a>
         </div>
       </div>
     </article>
@@ -1530,10 +1548,9 @@
           <span class="exportacion-dato-label"><span data-es>Teléfono</span><span data-en>Phone</span></span>
           <a href="tel:+541147895100">(+54 11) 4789-5100</a>
         </div>
-        <div class="exportacion-dato">
-          <span class="exportacion-dato-label"><span data-es>Contacto general</span><span data-en>General contact</span></span>
-          <a href="mailto:contacto@dellepiane.com.ar">contacto@dellepiane.com.ar</a>
-        </div>
+        <a href="https://dellepiane.com.ar/logistica.html" class="btn-logistica" target="_blank" rel="noopener">
+          <span data-es>Datos logísticos</span><span data-en>Logistics data</span> <span aria-hidden="true">↗</span>
+        </a>
 
         <div class="exportacion-paises">
           <div class="exportacion-region">
