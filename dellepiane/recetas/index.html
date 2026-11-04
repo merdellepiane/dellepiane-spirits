@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P47ZZB7P');</script>
+<!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recetario Tres Plumas — Dellepiane Spirits</title>
+  <meta name="description" content="Cócteles, postres y recetas para disfrutar con los licores Tres Plumas.">
+  <!-- PLACEHOLDER: página temporal hasta que esté el recetario completo -->
+  <link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png">
+  <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --azul: #3B4BA8;
+      --negro: #0E0E0E;
+      --blanco: #FAFAF8;
+      --crema: #F5EDE0;
+      --rojo: #C8202A;
+      --gris: #6B6B6B;
+      --borde: #E0E0DC;
+      --serif: 'Cormorant Garamond', serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+    [data-en] { display: none; }
+    body.lang-en [data-es] { display: none; }
+    body.lang-en [data-en] { display: inline; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--crema);
+      color: var(--negro);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Barra superior */
+    .top {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px;
+    }
+    .top img { height: 26px; width: auto; display: block; }
+    .lang { display: flex; gap: 10px; font-size: 11px; letter-spacing: 0.15em; }
+    .lang-btn { background: none; border: none; font: inherit; color: var(--gris); cursor: pointer; padding: 4px; }
+    .lang-btn.active { color: var(--negro); font-weight: 500; }
+
+    /* Contenido */
+    main {
+      flex: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 40px 24px 64px;
+    }
+    .tp-logo { width: 120px; height: auto; margin-bottom: 40px; }
+    .eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--rojo); margin-bottom: 20px;
+    }
+    h1 {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(40px, 9vw, 72px); line-height: 1.05;
+      max-width: 12ch; margin-bottom: 24px;
+    }
+    @media (min-width: 900px) {
+      h1 { max-width: 18ch; }
+      .tp-logo { width: 96px; margin-bottom: 32px; }
+    }
+    h1 em { font-style: italic; }
+    .lead {
+      font-size: 15px; font-weight: 300; line-height: 1.7; color: #4A4A4A;
+      max-width: 420px; margin-bottom: 40px;
+    }
+    .ctas { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 320px; }
+    .btn {
+      display: block; text-decoration: none; text-align: center;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 17px 24px; transition: opacity .2s, background .2s;
+    }
+    .btn--fill { background: var(--negro); color: var(--blanco); }
+    .btn--fill:hover { opacity: .85; }
+    .btn--line { border: 1px solid var(--negro); color: var(--negro); }
+    .btn--line:hover { background: var(--negro); color: var(--blanco); }
+    .link {
+      margin-top: 20px; font-size: 12px; color: var(--gris); text-decoration: none;
+      border-bottom: 1px solid var(--borde); padding-bottom: 2px;
+    }
+    .link:hover { color: var(--negro); }
+
+    footer {
+      padding: 24px; text-align: center;
+      font-size: 11px; font-weight: 300; line-height: 1.6; color: var(--gris);
+    }
+  </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P47ZZB7P"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <header class="top">
+    <a href="../index.html"><img src="../images/logo.png" alt="Dellepiane Spirits"></a>
+    <div class="lang">
+      <button class="lang-btn active" data-lang="es">ES</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <img class="tp-logo" src="../images/isologo-tres-plumas.png" alt="Tres Plumas">
+    <p class="eyebrow"><span data-es>Recetario Tres Plumas</span><span data-en>Tres Plumas Recipes</span></p>
+    <h1>
+      <span data-es>Cócteles, postres y <em>buenos momentos</em></span>
+      <span data-en>Cocktails, desserts and <em>good times</em></span>
+    </h1>
+    <p class="lead">
+      <span data-es>Estamos preparando nuestro recetario. Muy pronto vas a encontrar acá ideas para disfrutar cada licor Tres Plumas. Mientras tanto, te esperamos en Instagram.</span>
+      <span data-en>Our recipe collection is on its way. Soon you'll find ideas here to enjoy every Tres Plumas liqueur. In the meantime, find us on Instagram.</span>
+    </p>
+    <div class="ctas">
+      <a class="btn btn--fill" href="https://www.instagram.com/licorestresplumas/" target="_blank" rel="noopener">
+        <span data-es>Ver recetas en Instagram</span><span data-en>See recipes on Instagram</span>
+      </a>
+      <a class="btn btn--line" href="https://www.dellepianespirits.com/store/product-category/tres-plumas/">
+        <span data-es>Comprar Tres Plumas</span><span data-en>Shop Tres Plumas</span>
+      </a>
+    </div>
+    <a class="link" href="../tres-plumas.html"><span data-es>Conocé Tres Plumas</span><span data-en>Discover Tres Plumas</span></a>
+  </main>
+
+  <footer>
+    <span data-es>Beber con moderación. Prohibida su venta a menores de 18 años. © 2026 Dellepiane S.A.</span>
+    <span data-en>Drink responsibly. Not for sale to persons under 18 years of age. © 2026 Dellepiane S.A.</span>
+  </footer>
+
+  <script>
+    /* Idioma (misma clave que el resto del sitio) */
+    (function () {
+      var KEY = 'dp_lang';
+      function setLang(lang) {
+        document.body.classList.toggle('lang-en', lang === 'en');
+        document.documentElement.lang = lang;
+        document.querySelectorAll('.lang-btn').forEach(function (b) {
+          b.classList.toggle('active', b.dataset.lang === lang);
+        });
+        try { localStorage.setItem(KEY, lang); } catch (e) {}
+      }
+      document.querySelectorAll('.lang-btn').forEach(function (b) {
+        b.addEventListener('click', function () { setLang(this.dataset.lang); });
+      });
+      try { if (localStorage.getItem(KEY) === 'en') setLang('en'); } catch (e) {}
+    })();
+  </script>
+
+  <!-- AGE GATE (igual al resto del sitio) -->
+  <div id="age-gate" style="display:none;">
+    <div class="ag-overlay"></div>
+    <div class="ag-panel">
+      <img src="../images/logo.png" alt="Dellepiane Spirits" class="ag-logo">
+      <p class="ag-eyebrow"><span data-es>Bienvenido</span><span data-en>Welcome</span></p>
+      <h2 class="ag-title">
+        <span data-es>¿Tenés 18 años<br>o más?</span>
+        <span data-en>Are you 18<br>or older?</span>
+      </h2>
+      <p class="ag-sub">
+        <span data-es>Este sitio contiene información sobre bebidas alcohólicas.<br>Por favor confirmá tu edad para continuar.</span>
+        <span data-en>This site contains information about alcoholic beverages.<br>Please confirm your age to continue.</span>
+      </p>
+      <div class="ag-actions">
+        <button class="ag-btn-yes" id="ag-yes"><span data-es>Sí, tengo 18 o más</span><span data-en>Yes, I'm 18 or older</span></button>
+        <button class="ag-btn-no" id="ag-no"><span data-es>No, soy menor de edad</span><span data-en>No, I'm under 18</span></button>
+      </div>
+      <p class="ag-legal">
+        <span data-es>Beber con moderación. Prohibida la venta de bebidas alcohólicas a menores de 18 años.</span>
+        <span data-en>Drink responsibly. Sale of alcoholic beverages to persons under 18 is prohibited.</span>
+      </p>
+    </div>
+  </div>
+  <style>
+    #age-gate { position:fixed; inset:0; z-index:9999; align-items:center; justify-content:center; }
+    #age-gate.visible { display:flex !important; }
+    .ag-overlay { position:absolute; inset:0; background:rgba(14,14,14,0.72); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+    .ag-panel { position:relative; z-index:1; background:var(--blanco); padding:64px 56px; max-width:480px; width:calc(100% - 48px); text-align:center; display:flex; flex-direction:column; align-items:center; }
+    .ag-logo { height:36px; width:auto; margin-bottom:36px; }
+    .ag-eyebrow { font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:var(--azul); margin-bottom:16px; }
+    .ag-title { font-family:var(--serif); font-size:42px; font-weight:300; line-height:1.1; color:var(--negro); margin-bottom:20px; }
+    .ag-sub { font-family:var(--sans); font-size:14px; font-weight:300; line-height:1.7; color:#5C5C5C; margin-bottom:36px; }
+    .ag-actions { display:flex; flex-direction:column; gap:12px; width:100%; margin-bottom:28px; }
+    .ag-btn-yes { font-family:var(--sans); font-size:13px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; background:var(--azul); color:var(--blanco); border:none; padding:18px 32px; cursor:pointer; width:100%; }
+    .ag-btn-no { font-family:var(--sans); font-size:13px; font-weight:400; letter-spacing:0.08em; text-transform:uppercase; background:transparent; color:var(--gris); border:1px solid var(--borde); padding:16px 32px; cursor:pointer; width:100%; }
+    .ag-legal { font-family:var(--sans); font-size:11px; font-weight:300; line-height:1.6; color:var(--gris); max-width:340px; }
+    @media (max-width:480px) { .ag-panel { padding:48px 28px; } .ag-title { font-size:34px; } }
+  </style>
+  <script>
+    (function () {
+      var AGE_GATE_ENABLED = true;
+      var gate = document.getElementById('age-gate');
+      if (!AGE_GATE_ENABLED) return;
+      var verified = false;
+      try { verified = !!sessionStorage.getItem('age-verified'); } catch (e) {}
+      if (!verified) { gate.classList.add('visible'); document.body.style.overflow = 'hidden'; }
+      document.getElementById('ag-yes').addEventListener('click', function () {
+        try { sessionStorage.setItem('age-verified', '1'); } catch (e) {}
+        gate.classList.remove('visible'); gate.style.display = 'none'; document.body.style.overflow = '';
+      });
+      document.getElementById('ag-no').addEventListener('click', function () {
+        window.location.href = 'https://www.who.int/es/news-room/fact-sheets/detail/alcohol';
+      });
+    })();
+  </script>
+</body>
+</html>
