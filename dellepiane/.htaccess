@@ -1,0 +1,8 @@
+# Web institucional dellepianespirits.com — .htaccess de la RAÍZ
+# Se publica desde el repo (dellepiane/.htaccess) con el deploy de GitHub.
+# La tienda (/store) tiene su propio .htaccess: no se toca.
+# Las redirecciones de dellepiane.com.ar, Tres Plumas y Golden Age están en el panel de DreamHost.
+
+# Links viejos de la tienda anterior (Search Console los marcaba 404) — 09/11/2026
+RedirectMatch 301 ^/checkout/?$ /store/check-out/
+RedirectMatch 301 ^/tienda(/.*)?$ /store/
